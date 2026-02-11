@@ -108,5 +108,5 @@ function avviaGioco(){
 
 mostraAvatar(1);
 mostraAvatar(2);
-mostraColore(1);
-mostraColore(2);
+mostraColore(null, 1);
+mostraColore(null, 2);

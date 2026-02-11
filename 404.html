@@ -8,8 +8,8 @@
 <body>
   <script>
     (function() {
-      var basePath = location.pathname.split('/').filter(Boolean)[0];
-      var base = basePath === 'ErlexFamilyFeud' ? '/ErlexFamilyFeud/' : '/';
+      var isGithub = location.hostname === 'erlex1996.github.io';
+      var base = isGithub ? '/ErlexFamilyFeud/' : '/';
       var cleanBase = base.replace(/\/$/, '');
       var path = location.pathname.replace(cleanBase, '') || '/';
       var target = base + '?route=' + encodeURIComponent(path + location.search + location.hash);

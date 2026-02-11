@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Erlex Family Feud</title>
-  <base id="appBase" href="/">
   <script>
     (function() {
-      var basePath = location.pathname.split('/').filter(Boolean)[0];
-      var base = basePath === 'ErlexFamilyFeud' ? '/ErlexFamilyFeud/' : '/';
-      document.getElementById('appBase').setAttribute('href', base);
+      var isGithub = location.hostname === 'erlex1996.github.io';
+      var base = isGithub ? '/ErlexFamilyFeud/' : '/';
       window.location.replace(base + 'game');
     })();
   </script>
