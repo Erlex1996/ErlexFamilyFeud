@@ -67,9 +67,15 @@ function mostraColore(event,s){
   } 
   
   coloreScelto[s]=colore;
-  event.target.closest('.squadra-inner').style.borderColor=colore;
-  event.target.closest('.squadra-inner').style.borderSize='3px';
-  event.target.closest('.squadra-inner').style.borderStyle='solid';
+
+  if (event && event.target) {
+    var card = event.target.closest('.squadra-inner');
+    if (card) {
+      card.style.borderColor = colore;
+      card.style.borderSize = '3px';
+      card.style.borderStyle = 'solid';
+    }
+  }
 }
 
 function nextColore(event,s){

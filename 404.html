@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erlex Family Feud</title>
+</head>
+<body>
+  <script>
+    (function() {
+      var basePath = location.pathname.split('/').filter(Boolean)[0];
+      var base = basePath === 'ErlexFamilyFeud' ? '/ErlexFamilyFeud/' : '/';
+      var cleanBase = base.replace(/\/$/, '');
+      var path = location.pathname.replace(cleanBase, '') || '/';
+      var target = base + '?route=' + encodeURIComponent(path + location.search + location.hash);
+      location.replace(target);
+    })();
+  </script>
+</body>
+</html>

@@ -10,6 +10,13 @@
     var basePath = location.pathname.split('/').filter(Boolean)[0];
     var base = basePath === 'ErlexFamilyFeud' ? '/ErlexFamilyFeud/' : '/';
     document.getElementById('appBase').setAttribute('href', base);
+
+    var params = new URLSearchParams(location.search);
+    var route = params.get('route');
+    if (route) {
+      var cleanBase = base.replace(/\/$/, '');
+      history.replaceState({}, '', cleanBase + route);
+    }
   })();
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">

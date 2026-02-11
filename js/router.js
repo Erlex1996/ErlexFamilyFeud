@@ -1,3 +1,6 @@
+const APP_VERSION = 'v0.0.1';
+console.log('Erlex Family Feud', APP_VERSION);
+
 function getBasePath(){
   const baseUrl = new URL(document.baseURI);
   const basePath = baseUrl.pathname.replace(/\/$/, '');
