@@ -130,6 +130,13 @@ function restartGame(){
 }
 
 document.getElementById('restartButton').addEventListener('click',restartGame);
+document.getElementById('backButton').addEventListener('click',() => {
+  if (typeof window.appNavigate === 'function') {
+    window.appNavigate('/menu');
+  } else {
+    window.location.href='/menu';
+  }
+});
 
 document.querySelectorAll('.round-box').forEach(box=>{
   box.addEventListener('click',()=>{
@@ -306,9 +313,9 @@ title:"Le preoccupazioni globali più diffuse",
 answers:[
 { text:"Inflazione/Costo della vita", score:30 },
 { text:"Guerra e violenze", score:25 },
-{ text:"Povertà e disuguaglianza sociale", score:20 },
+{ text:"Povertà e disuguaglianza", score:20 },
 { text:"Disoccupazione", score:15 },
-{ text:"Corruzione politica e finanziaria", score:13 },
+{ text:"Corruzione politica", score:13 },
 { text:"Sistema sanitario", score:10 },
 { text:"Immigrazione", score:7 },
 { text:"Cambiamento climatico", score:5 }

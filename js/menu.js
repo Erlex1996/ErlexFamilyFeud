@@ -57,23 +57,26 @@ const colori=['#e74c3c','#e67e22','#f1c40f','#2ecc71','#1abc9c','#3498db','#9b59
 let coloreIndex={1:0,2:5};
 let coloreScelto={1:colori[0],2:colori[5]};
 
-function mostraColore(s){
+function mostraColore(event,s){
   const colore=colori[coloreIndex[s]];
   const divColore=document.getElementById('coloreMostrato'+s);
   divColore.style.background=colore;
   divColore.style.border='3px solid #fff';
   divColore.style.borderRadius='50%';
   coloreScelto[s]=colore;
+  event.target.closest('.squadra-inner').style.borderColor=colore;
+  event.target.closest('.squadra-inner').style.borderSize='3px';
+  event.target.closest('.squadra-inner').style.borderStyle='solid';
 }
 
-function nextColore(s){
+function nextColore(event,s){
   coloreIndex[s]=(coloreIndex[s]+1)%colori.length;
-  mostraColore(s);
+  mostraColore(event,s);
 }
 
-function prevColore(s){
+function prevColore(event,s){
   coloreIndex[s]=(coloreIndex[s]-1+colori.length)%colori.length;
-  mostraColore(s);
+  mostraColore(event,s);
 }
 
 function avviaGioco(){

@@ -65,6 +65,22 @@ body.route-game::before {
   z-index: 10;
 }
 
+/* === PULSANTE BACK === */
+#backButton {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 8px 18px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #ffae00;
+  color: #000;
+  z-index: 10;
+}
+
 /* === MESSAGGIO MOMENTO DECISIVO === */
 #roundDecisivo {
   position: fixed;

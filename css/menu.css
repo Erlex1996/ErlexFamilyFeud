@@ -41,6 +41,7 @@ body.route-menu .squadra-inner {
     background: rgba(255,255,255,0.95);
     color: #000;
     border-radius: 20px;
+    border:3px solid transparent;
     padding: 30px;
     box-sizing: border-box;
 }

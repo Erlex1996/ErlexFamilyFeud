@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/menu.css">
 <link rel="stylesheet" href="css/game.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
 
@@ -25,9 +27,9 @@
 
   <br><br>Colore:
   <div class="color-selezione">
-  <button class="carosello-btn" onclick="prevColore(1)">&lt;</button>
+  <button class="carosello-btn" onclick="prevColore(event,1)">&lt;</button>
   <div id="coloreMostrato1"></div>
-  <button class="carosello-btn" onclick="nextColore(1)">&gt;</button>
+  <button class="carosello-btn" onclick="nextColore(event,1)">&gt;</button>
   </div>
 
   Avatar:
@@ -47,9 +49,9 @@
 
   <br><br>Colore:
   <div class="color-selezione">
-  <button class="carosello-btn" onclick="prevColore(2)">&lt;</button>
+  <button class="carosello-btn" onclick="prevColore(event,2)">&lt;</button>
   <div id="coloreMostrato2"></div>
-  <button class="carosello-btn" onclick="nextColore(2)">&gt;</button>
+  <button class="carosello-btn" onclick="nextColore(event,2)">&gt;</button>
   </div>
 
   Avatar:
@@ -73,6 +75,7 @@
   <audio id="tensioneSound" src="assets/audio/musica_tensione.mp3" preload="auto" loop></audio>
 
   <button id="restartButton">Restart</button>
+  <button id="backButton" class="btn"><i class="bi bi-arrow-left"></i></button>
 
   <div id="roundDecisivo"></div>
 
