@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erlex Family Feud</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+/* === SCALA GLOBALE === */
+.scale-container {
+  transform: scale(1.10) translateY(-20px);
+  transform-origin: top center;
+  max-width: 100%;
+}
+
+/* === SFONDO === */
+body {
+  font-family: 'Copperplate', sans-serif;
+  background: url('sfondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
+  min-height: 90vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.5);
+  z-index: -1;
+}
+
+/* === H1 === */
+h1 {
+  font-family: 'Candara', cursive;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px #000000aa;
+  line-height: 1.3;
+}
+
+/* === LOGO === */
+.logo {
+  width: 250px;
+  max-width: 60%;
+  height: auto;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+
+/* === PULSANTE RESTART === */
+#restartButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 8px 18px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #ffae00;
+  color: #000;
+  z-index: 10;
+}
+
+/* === MESSAGGIO MOMENTO DECISIVO === */
+#roundDecisivo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4.5em;
+  font-weight: bold;
+  color: #ff4444;
+  text-shadow: 3px 3px 15px #000;
+  background: rgba(0,0,0,0.75);
+  padding: 30px 50px;
+  border-radius: 20px;
+  z-index: 50;
+  display: none;
+  opacity: 0;
+  transition: opacity 2s ease;
+  line-height: 1.3;
+  text-align: center;
+}
+
+#roundDecisivo.show {
+  display: block;
+  opacity: 1;
+}
+
+#roundDecisivo.hide {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+/* === CONTENITORE PRINCIPALE === */
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* === TEAM BOX === */
+.team-score {
+  background: linear-gradient(to bottom, #111144, #000022);
+  border: 4px solid #ffae00;
+  border-radius: 20px;
+  width: 120px;
+  max-width: 18%;
+  flex: 1 1 120px;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 12px;
+  min-height: 350px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.team-score h2 {
+  font-size: 1.4em;
+  margin-bottom: 8px;
+}
+
+.score-value {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.score-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.score-buttons button {
+  font-size: 1.2em;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.score-buttons .add { background-color: #4CAF50; color: white; }
+.score-buttons .subtract { background-color: #f44336; color: white; }
+
+/* === AVATAR SULLA SQUADRA === */
+.team-avatar {
+  position: absolute;
+  top: -50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid #ffae00;
+  object-fit: cover;
+  z-index: 5;
+}
+
+/* === STRIKES / ERRORI === */
+.strikes-container{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+  margin-bottom:10px;
+  justify-content: center;
+}
+
+.strike{
+  width:35px;
+  height:35px;
+  border-radius:6px;
+  border:2px solid #ff4444;
+  background:#550000;
+  cursor:pointer;
+  transition: all 0.2s ease;
+}
+
+.strike.active{
+  background:#ff2222;
+  box-shadow:0 0 8px #ff0000;
+}
+
+/* === BOARD CENTRALE === */
+.board-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #222266, #000033);
+  border: 6px solid #ffae00;
+  border-radius: 20px;
+  padding: 10px 15px;
+  gap: 10px;
+  flex: 1 1 400px;
+  max-width: 50%;
+  box-sizing: border-box;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 180px;
+}
+
+/* === ANSWER BOX === */
+.answer-box {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 1.3em;
+  border: 3px solid #ffffff80;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(to right, #3b5ecb, #1a3ca5);
+  transition: all 0.3s ease;
+  gap: 10px;
+  min-height: 60px;
+}
+
+.answer-box:hover {
+  background: linear-gradient(to right, #5576e6, #2a50c0);
+}
+
+.answer-position {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #ffae00;
+  min-width: 30px;
+  text-align: left;
+}
+
+.answer-text { font-weight:bold; flex-grow:1; }
+.answer-score {
+  background:#0b3d91;
+  padding:6px 12px;
+  border-radius:5px;
+  font-weight:bold;
+  min-width:50px;
+  text-align:center;
+  font-size:1.2em;
+}
+
+.hidden { visibility: hidden; }
+
+/* === ROUND BOX === */
+.rounds-container { 
+  display: flex; 
+  flex-direction: column; 
+  gap:5px; 
+  margin-top:15px;
+  justify-content:center; 
+  align-items:center; 
+}
+
+.rounds-row { display: flex; gap:4px; justify-content:center; }
+.round-box {
+  width:25px;
+  height:25px;
+  border:2px solid #ffae00;
+  border-radius:5px;
+  cursor:pointer;
+  background:transparent;
+}
+
+.round-box.active { background-color:#4CAF50; }
+
+/* === ROUND NAVIGATION BOTTOM === */
+.round-nav{
+  position:fixed;
+  bottom:15px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:12px;
+  z-index:100;
+}
+
+.round-btn{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  border:3px solid #ffae00;
+  background:#111144;
+  color:#fff;
+  font-size:1.4em;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.round-btn:hover{
+  background:#2a50c0;
+  transform:scale(1.1);
+}
+
+.round-btn.active{
+  background:#ffae00;
+  color:#000;
+}
+
+/* === RESPONSIVE === */
+@media (max-width:1200px){
+  .board-container { flex-direction: column; padding:10px 15px; gap:10px; max-width:60%; }
+  .column { gap:8px; }
+  .answer-box { font-size:1.2em; padding:12px 15px; min-height:55px; }
+  .team-score { width:180px; max-width:30%; padding-top:70px; }
+  .score-value { font-size:1.8em; }
+  .strike{ width:30px; height:30px; }
+}
+
+@media (max-width:800px){
+  .game-container { flex-direction: column; align-items:center; gap:15px; }
+  .team-score { width:70%; max-width:250px; padding-top:70px; }
+  .board-container { width:90%; max-width:400px; padding:10px; }
+  .answer-box { font-size:1.1em; padding:10px 12px; min-height:50px; }
+}
+
+@media (max-width:500px){
+  h1 { font-size:1.5em; }
+  .answer-box { font-size:1em; padding:8px 10px; min-height:45px; }
+  .score-buttons button { font-size:1em; padding:4px 8px; }
+  .strike{ width:25px; height:25px; }
+  .round-box{ width:20px; height:20px; }
+  .team-score { padding-top:60px; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="successSound" src="correct_answer.mp3" preload="auto"></audio>
+<audio id="wrongSound" src="wrong_answer.mp3" preload="auto"></audio>
+<audio id="roundSound" src="vittoria_round.mp3" preload="auto"></audio>
+<audio id="tensioneSound" src="musica_tensione.mp3" preload="auto" loop></audio>
+
+<button id="restartButton">Restart</button>
+
+<div id="roundDecisivo"></div>
+
+<div class="scale-container">
+
+<img src="logo.png" class="logo" alt="Logo">
+<h1>Round di prova</h1>
+
+<div class="game-container">
+
+<!-- TEAM A -->
+<div class="team-score" id="teamA">
+<img src="" id="avatarA" class="team-avatar">
+<h2 id="nomeA">Squadra A</h2>
+<div class="score-value" id="scoreA">0</div>
+<div class="score-buttons">
+<button class="add" onclick="changeScore('A',1)">+</button>
+<button class="subtract" onclick="changeScore('A',-1)">-</button>
+</div>
+<div class="strikes-container">
+<div class="strike"></div><div class="strike"></div><div class="strike"></div>
+</div>
+<div class="rounds-container">
+<div class="rounds-row"><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div></div>
+<div class="rounds-row"><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div></div>
+</div>
+</div>
+
+<!-- BOARD CENTRALE -->
+<div class="board-container">
+<div class="column">
+<div class="answer-box" onclick="revealAnswer(0)"><div class="answer-position">1.</div><div class="answer-text hidden">Vale</div><div class="answer-score hidden">30</div></div>
+<div class="answer-box" onclick="revealAnswer(1)"><div class="answer-position">2.</div><div class="answer-text hidden">Dig</div><div class="answer-score hidden">25</div></div>
+<div class="answer-box" onclick="revealAnswer(2)"><div class="answer-position">3.</div><div class="answer-text hidden">Livia</div><div class="answer-score hidden">20</div></div>
+<div class="answer-box" onclick="revealAnswer(3)"><div class="answer-position">4.</div><div class="answer-text hidden">Ceci</div><div class="answer-score hidden">15</div></div>
+</div>
+<div class="column">
+<div class="answer-box" onclick="revealAnswer(4)"><div class="answer-position">5.</div><div class="answer-text hidden">Menicu</div><div class="answer-score hidden">13</div></div>
+<div class="answer-box" onclick="revealAnswer(5)"><div class="answer-position">6.</div><div class="answer-text hidden">Giulia</div><div class="answer-score hidden">10</div></div>
+<div class="answer-box" onclick="revealAnswer(6)"><div class="answer-position">7.</div><div class="answer-text hidden">Pablo</div><div class="answer-score hidden">7</div></div>
+<div class="answer-box" onclick="revealAnswer(7)"><div class="answer-position">8.</div><div class="answer-text hidden">Erlex</div><div class="answer-score hidden">5</div></div>
+</div>
+</div>
+
+<!-- TEAM B -->
+<div class="team-score" id="teamB">
+<img src="" id="avatarB" class="team-avatar">
+<h2 id="nomeB">Squadra B</h2>
+<div class="score-value" id="scoreB">0</div>
+<div class="score-buttons">
+<button class="add" onclick="changeScore('B',1)">+</button>
+<button class="subtract" onclick="changeScore('B',-1)">-</button>
+</div>
+<div class="strikes-container">
+<div class="strike"></div><div class="strike"></div><div class="strike"></div>
+</div>
+<div class="rounds-container">
+<div class="rounds-row"><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div></div>
+<div class="rounds-row"><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- NAVIGAZIONE ROUND -->
+<div class="round-nav">
+<button class="round-btn" onclick="changeRound(0)">0</button>
+<button class="round-btn" onclick="changeRound(1)">1</button>
+<button class="round-btn" onclick="changeRound(2)">2</button>
+<button class="round-btn" onclick="changeRound(3)">3</button>
+<button class="round-btn" onclick="changeRound(4)">4</button>
+<button class="round-btn" onclick="changeRound(5)">5</button>
+<button class="round-btn" onclick="changeRound(6)">6</button>
+<button class="round-btn" onclick="changeRound(7)">7</button>
+<button class="round-btn" onclick="changeRound(8)">8</button>
+<button class="round-btn" onclick="changeRound(9)">9</button>
+<button class="round-btn" onclick="changeRound(10)">10</button>
+</div>
+
+<script>
+let lastRevealedScore=0;
+let firstClickAppliedA=false;
+let firstClickAppliedB=false;
+
+const nome1 = localStorage.getItem('nome1') || 'Squadra A';
+const colore1 = localStorage.getItem('colore1') || '#ffae00';
+const avatar1 = localStorage.getItem('avatar1') || '';
+
+const nome2 = localStorage.getItem('nome2') || 'Squadra B';
+const colore2 = localStorage.getItem('colore2') || '#ffae00';
+const avatar2 = localStorage.getItem('avatar2') || '';
+
+document.getElementById('nomeA').textContent = nome1;
+document.getElementById('avatarA').src = avatar1 ? 'avatars/'+avatar1 : '';
+document.getElementById('teamA').style.borderColor = colore1;
+
+document.getElementById('nomeB').textContent = nome2;
+document.getElementById('avatarB').src = avatar2 ? 'avatars/'+avatar2 : '';
+document.getElementById('teamB').style.borderColor = colore2;
+
+let currentRound = 0;
+
+function changeRound(roundNumber){
+
+  currentRound = roundNumber;
+
+  /* aggiorna titolo */
+  const title = document.querySelector("h1");
+  title.textContent = roundNumber === 0 ? "Round di prova" : "Round " + roundNumber;
+
+  /* evidenzia bottone attivo */
+  document.querySelectorAll('.round-btn').forEach(btn=>{
+    btn.classList.remove('active');
+    if(parseInt(btn.textContent) === roundNumber){
+      btn.classList.add('active');
+    }
+  });
+
+  /* RESET SOLO GAMEPLAY */
+  loadRoundData(roundNumber);
+  resetRoundState();
+}
+
+function resetRoundState(){
+
+  document.getElementById('scoreA').textContent=0;
+  document.getElementById('scoreB').textContent=0;
+
+  lastRevealedScore=0;
+  firstClickAppliedA=false;
+  firstClickAppliedB=false;
+
+  /* nasconde risposte */
+  document.querySelectorAll('.answer-text').forEach(el=>el.classList.add('hidden'));
+  document.querySelectorAll('.answer-score').forEach(el=>el.classList.add('hidden'));
+
+  /* reset strike */
+  document.querySelectorAll('.strike').forEach(el=>el.classList.remove('active'));
+
+  /* FERMA tensione */
+  const tensione = document.getElementById('tensioneSound');
+  tensione.pause();
+  tensione.currentTime = 0;
+}
+
+function revealAnswer(index){
+  const allBoxes=document.querySelectorAll(".answer-box");
+  const box=allBoxes[index];
+  const text=box.querySelector(".answer-text");
+  const score=box.querySelector(".answer-score");
+  if(text.classList.contains("hidden")){
+    text.classList.remove("hidden");
+    score.classList.remove("hidden");
+    lastRevealedScore=parseInt(score.textContent);
+    firstClickAppliedA=false;
+    firstClickAppliedB=false;
+    const s=document.getElementById('successSound');
+    s.currentTime=1;
+    s.play();
+  }
+}
+
+function changeScore(team,delta){
+  const scoreEl=document.getElementById(team==='A'?'scoreA':'scoreB');
+  let score=parseInt(scoreEl.textContent);
+  if(team==='A'){
+    if(!firstClickAppliedA && delta===1 && lastRevealedScore>0){
+      score+=lastRevealedScore;
+      firstClickAppliedA=true;
+    }else{
+      score+=delta;
+    }
+  }else{
+    if(!firstClickAppliedB && delta===1 && lastRevealedScore>0){
+      score+=lastRevealedScore;
+      firstClickAppliedB=true;
+    }else{
+      score+=delta;
+    }
+  }
+  if(score<0) score=0;
+  scoreEl.textContent=score;
+}
+
+function restartGame(){
+  document.getElementById('scoreA').textContent=0;
+  document.getElementById('scoreB').textContent=0;
+  lastRevealedScore=0;
+  firstClickAppliedA=false;
+  firstClickAppliedB=false;
+  document.querySelectorAll('.answer-text').forEach(el=>el.classList.add('hidden'));
+  document.querySelectorAll('.answer-score').forEach(el=>el.classList.add('hidden'));
+  document.querySelectorAll('.round-box').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.strike').forEach(el=>el.classList.remove('active'));
+
+    // Ferma musica tensione
+  const tensione = document.getElementById('tensioneSound');
+  tensione.pause();
+  tensione.currentTime = 0;
+}
+
+document.getElementById('restartButton').addEventListener('click',restartGame);
+
+document.querySelectorAll('.round-box').forEach(box=>{
+  box.addEventListener('click',()=>{
+    const isActivating = !box.classList.contains('active');
+    box.classList.toggle('active');
+
+    if(isActivating){
+      const s = document.getElementById('roundSound');
+      s.currentTime = 0;
+      s.play();
+
+      // Ferma musica tensione
+      const tensione = document.getElementById('tensioneSound');
+      tensione.pause();
+      tensione.currentTime = 0;
+    }
+  });
+});
+
+function checkStrikes() {
+  const strikesA = document.querySelectorAll('#teamA .strike.active').length;
+  const strikesB = document.querySelectorAll('#teamB .strike.active').length;
+
+  if (strikesA === 3) {
+    showRoundDecisivo(nome2);
+  } else if (strikesB === 3) {
+    showRoundDecisivo(nome1);
+  }
+}
+
+function showRoundDecisivo(nomeSquadra) {
+  const msg = document.getElementById('roundDecisivo');
+
+  msg.innerHTML = `
+    MOMENTO DECISIVO!<br>
+    <span style="font-size:0.8em">${nomeSquadra.toUpperCase()} PREPARATEVI!</span>
+  `;
+
+msg.style.display = 'block';
+msg.classList.remove('hide');
+
+/* forza il browser a registrare opacity:0 */
+msg.offsetHeight;
+
+/* fade-in */
+msg.classList.add('show');
+
+// Avvia musica tensione
+const tensione = document.getElementById('tensioneSound');
+tensione.currentTime = 0;
+tensione.play();
+
+
+  setTimeout(() => {
+    msg.classList.remove('show');
+    msg.classList.add('hide');
+
+    setTimeout(() => {
+      msg.style.display = 'none';
+    }, 2500);
+  }, 6000);
+}
+
+document.querySelectorAll('.strike').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const isActivating=!btn.classList.contains('active');
+    btn.classList.toggle('active');
+    const s=document.getElementById('wrongSound');
+    if(isActivating) s.currentTime=0.5;
+    s.play();
+    checkStrikes();
+  });
+});
+
+/* =============================
+   DATI DI TUTTI I ROUND
+============================= */
+
+const roundsData = [
+
+/* ROUND 0 */
+{
+title:"Round di prova",
+answers:[
+{ text:"Vale", score:30 },
+{ text:"Dig", score:25 },
+{ text:"Livia", score:20 },
+{ text:"Ceci", score:15 },
+{ text:"Menicu", score:13 },
+{ text:"Giulia", score:10 },
+{ text:"Pablo", score:7 },
+{ text:"Erlex", score:5 }
+]
+},
+
+/* ROUND 1 */
+{
+title:"Paesi più visitati al mondo",
+answers:[
+{ text:"Francia", score:30 },
+{ text:"Spagna", score:25 },
+{ text:"Stati Uniti", score:20 },
+{ text:"Cina", score:15 },
+{ text:"Italia", score:13 },
+{ text:"Turchia", score:10 },
+{ text:"Messico", score:7 },
+{ text:"Germania", score:5 }
+]
+},
+
+/* ROUND 2 */
+{
+title:"Cibi più ordinati al mondo",
+answers:[
+{ text:"Pizza", score:30 },
+{ text:"Hamburger", score:25 },
+{ text:"Sushi", score:20 },
+{ text:"Pasta", score:15 },
+{ text:"Insalata", score:13 },
+{ text:"Dolci", score:10 },
+{ text:"Bevande", score:7 },
+{ text:"Kebab", score:5 }
+]
+},
+
+/* ROUND 3 */
+{
+title:"Artisti più ascoltati su Spotify nel 2025",
+answers:[
+{ text:"Bad Bunny", score:30 },
+{ text:"Taylor Swift", score:25 },
+{ text:"The Weeknd", score:20 },
+{ text:"Drake", score:15 },
+{ text:"Billie Eilish", score:13 },
+{ text:"Kendrick Lamar", score:10 },
+{ text:"Bruno Mars", score:7 },
+{ text:"Ariana Grande", score:5 }
+]
+},
+
+/* ROUND 4 */
+{
+title:"Le serie di Netflix più viste di sempre (totale di tutte le stagioni)",
+answers:[
+{ text:"Squid Game", score:30 },
+{ text:"Wednesday", score:25 },
+{ text:"Stranger Things", score:20 },
+{ text:"La Casa di Carta", score:15 },
+{ text:"Bridgerton", score:13 },
+{ text:"Adolescence", score:10 },
+{ text:"DAHMER: Monster", score:7 },
+{ text:"La Regina degli Scacchi", score:5 }
+]
+},
+
+/* ROUND 5 */
+{
+title:"Le abitudini più comuni appena ci si sveglia",
+answers:[
+{ text:"Fare Colazione", score:30 },
+{ text:"Bere Acqua", score:25 },
+{ text:"Lavarsi", score:20 },
+{ text:"Controllare lo Smartphone", score:15 },
+{ text:"Andare in Bagno", score:13 },
+{ text:"Stretching", score:10 },
+{ text:"Guardare notizie Radio/TV", score:7 },
+{ text:"Vestirsi/Truccarsi", score:5 }
+]
+},
+
+/* ROUND 5 */
+{
+title:"Le preoccupazioni globali più diffuse",
+answers:[
+{ text:"Inflazione/Costo della vita", score:30 },
+{ text:"Guerra e violenze", score:25 },
+{ text:"Povertà e disuguaglianza sociale", score:20 },
+{ text:"Disoccupazione", score:15 },
+{ text:"Corruzione politica e finanziaria", score:13 },
+{ text:"Sistema sanitario", score:10 },
+{ text:"Immigrazione", score:7 },
+{ text:"Cambiamento climatico", score:5 }
+]
+}
+
+];
+
+function loadRoundData(roundNumber){
+
+  const round = roundsData[roundNumber];
+  if(!round) return;
+
+  /* cambia titolo personalizzato */
+  const title = document.querySelector("h1");
+  title.textContent = round.title;
+
+  const data = round.answers;
+  const boxes = document.querySelectorAll(".answer-box");
+
+  boxes.forEach((box,i)=>{
+    const textEl = box.querySelector(".answer-text");
+    const scoreEl = box.querySelector(".answer-score");
+
+    textEl.textContent = data[i].text;
+    scoreEl.textContent = data[i].score;
+  });
+
+}
+changeRound(0);
+</script>
+
+</body>
+</html>
