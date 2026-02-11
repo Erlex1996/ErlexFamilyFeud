@@ -87,7 +87,11 @@ function avviaGioco(){
   localStorage.setItem('colore2',coloreScelto[2]);
   localStorage.setItem('avatar2',avatarSelezionato[2]);
 
-  window.location.href='ErlexFamilyFeud.html';
+  if (typeof window.appNavigate === 'function') {
+    window.appNavigate('/game');
+  } else {
+    window.location.href='/game';
+  }
 }
 
 mostraAvatar(1);

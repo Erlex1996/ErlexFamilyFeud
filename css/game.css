@@ -6,7 +6,7 @@
 }
 
 /* === SFONDO === */
-body {
+body.route-game {
   font-family: 'Copperplate', sans-serif;
   background: url('../assets/images/sfondo.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -21,7 +21,7 @@ body {
   min-height: 90vh;
 }
 
-body::before {
+body.route-game::before {
   content: "";
   position: fixed;
   top:0; left:0;
@@ -31,7 +31,7 @@ body::before {
 }
 
 /* === H1 === */
-h1 {
+.route-game h1 {
   font-family: 'Candara', cursive;
   font-size: 2em;
   font-weight: bold;
@@ -198,7 +198,7 @@ h1 {
 /* === BOARD CENTRALE === */
 .board-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: flex-start;
   background: linear-gradient(135deg, #222266, #000033);
@@ -215,7 +215,8 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  flex: 1 1 180px;
+  flex: 1 1 0;
+  min-width: 180px;
 }
 
 /* === ANSWER BOX === */
@@ -282,13 +283,14 @@ h1 {
 
 /* === ROUND NAVIGATION BOTTOM === */
 .round-nav{
-  position:fixed;
-  bottom:15px;
-  left:50%;
-  transform:translateX(-50%);
+  position: static;
   display:flex;
   gap:12px;
-  z-index:100;
+  justify-content:center;
+  align-items:center;
+  margin: 60px auto 30px;
+  width: 100%;
+  z-index:1;
 }
 
 .round-btn{
@@ -317,8 +319,8 @@ h1 {
 /* === RESPONSIVE === */
 @media (max-width:1200px){
   .board-container { flex-direction: column; padding:10px 15px; gap:10px; max-width:60%; }
-  .column { gap:8px; }
-  .answer-box { font-size:1.2em; padding:12px 15px; min-height:55px; }
+  .column { gap:8px; width:100%; }
+  .answer-box { font-size:1.2em; padding:12px 15px; min-height:55px; width:100%; box-sizing:border-box; }
   .team-score { width:180px; max-width:30%; padding-top:70px; }
   .score-value { font-size:1.8em; }
   .strike{ width:30px; height:30px; }
@@ -328,12 +330,12 @@ h1 {
   .game-container { flex-direction: column; align-items:center; gap:15px; }
   .team-score { width:70%; max-width:250px; padding-top:70px; }
   .board-container { width:90%; max-width:400px; padding:10px; }
-  .answer-box { font-size:1.1em; padding:10px 12px; min-height:50px; }
+  .answer-box { font-size:1.1em; padding:10px 12px; min-height:50px; width:100%; box-sizing:border-box; }
 }
 
 @media (max-width:500px){
   h1 { font-size:1.5em; }
-  .answer-box { font-size:1em; padding:8px 10px; min-height:45px; }
+  .answer-box { font-size:1em; padding:8px 10px; min-height:45px; width:100%; box-sizing:border-box; }
   .score-buttons button { font-size:1em; padding:4px 8px; }
   .strike{ width:25px; height:25px; }
   .round-box{ width:20px; height:20px; }

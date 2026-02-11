@@ -1,102 +1,15 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Erlex Family Feud</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/game.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erlex Family Feud</title>
+  <meta http-equiv="refresh" content="0; url=/game">
 </head>
-
 <body>
-
-<audio id="successSound" src="assets/audio/correct_answer.mp3" preload="auto"></audio>
-<audio id="wrongSound" src="assets/audio/wrong_answer.mp3" preload="auto"></audio>
-<audio id="roundSound" src="assets/audio/vittoria_round.mp3" preload="auto"></audio>
-<audio id="tensioneSound" src="assets/audio/musica_tensione.mp3" preload="auto" loop></audio>
-
-<button id="restartButton">Restart</button>
-
-<div id="roundDecisivo"></div>
-
-<div class="scale-container">
-
-<img src="assets/images/Logo.png" class="logo" alt="Logo">
-<h1>Round di prova</h1>
-
-<div class="game-container">
-
-<!-- TEAM A -->
-<div class="team-score" id="teamA">
-<img src="" id="avatarA" class="team-avatar" alt="team-avatar">
-<h2 id="nomeA">Squadra A</h2>
-<div class="score-value" id="scoreA">0</div>
-<div class="score-buttons">
-<button class="add" onclick="changeScore('A',1)">+</button>
-<button class="subtract" onclick="changeScore('A',-1)">-</button>
-</div>
-<div class="strikes-container">
-<div class="strike"></div><div class="strike"></div><div class="strike"></div>
-</div>
-<div class="rounds-container">
-<div class="rounds-row"><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div></div>
-<div class="rounds-row"><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div></div>
-</div>
-</div>
-
-<!-- BOARD CENTRALE -->
-<div class="board-container">
-<div class="column">
-<div class="answer-box" onclick="revealAnswer(0)"><div class="answer-position">1.</div><div class="answer-text hidden">Vale</div><div class="answer-score hidden">30</div></div>
-<div class="answer-box" onclick="revealAnswer(1)"><div class="answer-position">2.</div><div class="answer-text hidden">Dig</div><div class="answer-score hidden">25</div></div>
-<div class="answer-box" onclick="revealAnswer(2)"><div class="answer-position">3.</div><div class="answer-text hidden">Livia</div><div class="answer-score hidden">20</div></div>
-<div class="answer-box" onclick="revealAnswer(3)"><div class="answer-position">4.</div><div class="answer-text hidden">Ceci</div><div class="answer-score hidden">15</div></div>
-</div>
-<div class="column">
-<div class="answer-box" onclick="revealAnswer(4)"><div class="answer-position">5.</div><div class="answer-text hidden">Menicu</div><div class="answer-score hidden">13</div></div>
-<div class="answer-box" onclick="revealAnswer(5)"><div class="answer-position">6.</div><div class="answer-text hidden">Giulia</div><div class="answer-score hidden">10</div></div>
-<div class="answer-box" onclick="revealAnswer(6)"><div class="answer-position">7.</div><div class="answer-text hidden">Pablo</div><div class="answer-score hidden">7</div></div>
-<div class="answer-box" onclick="revealAnswer(7)"><div class="answer-position">8.</div><div class="answer-text hidden">Erlex</div><div class="answer-score hidden">5</div></div>
-</div>
-</div>
-
-<!-- TEAM B -->
-<div class="team-score" id="teamB">
-<img src="" id="avatarB" class="team-avatar" alt="team-avatar">
-<h2 id="nomeB">Squadra B</h2>
-<div class="score-value" id="scoreB">0</div>
-<div class="score-buttons">
-<button class="add" onclick="changeScore('B',1)">+</button>
-<button class="subtract" onclick="changeScore('B',-1)">-</button>
-</div>
-<div class="strikes-container">
-<div class="strike"></div><div class="strike"></div><div class="strike"></div>
-</div>
-<div class="rounds-container">
-<div class="rounds-row"><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div></div>
-<div class="rounds-row"><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div><div class="round-box"></div></div>
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- NAVIGAZIONE ROUND -->
-<div class="round-nav">
-<button class="round-btn" onclick="changeRound(0)">0</button>
-<button class="round-btn" onclick="changeRound(1)">1</button>
-<button class="round-btn" onclick="changeRound(2)">2</button>
-<button class="round-btn" onclick="changeRound(3)">3</button>
-<button class="round-btn" onclick="changeRound(4)">4</button>
-<button class="round-btn" onclick="changeRound(5)">5</button>
-<button class="round-btn" onclick="changeRound(6)">6</button>
-<button class="round-btn" onclick="changeRound(7)">7</button>
-<button class="round-btn" onclick="changeRound(8)">8</button>
-<button class="round-btn" onclick="changeRound(9)">9</button>
-<button class="round-btn" onclick="changeRound(10)">10</button>
-</div>
-
-<script src="js/game.js"></script>
-
+  <p>Reindirizzamento in corso... Se non funziona, apri <a href="/game">/game</a>.</p>
+  <script>
+    window.location.replace('/game');
+  </script>
 </body>
 </html>

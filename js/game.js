@@ -1,22 +1,32 @@
 let lastRevealedScore=0;
 let firstClickAppliedA=false;
 let firstClickAppliedB=false;
+let teamNameA='Squadra A';
+let teamNameB='Squadra B';
 
-const nome1 = localStorage.getItem('nome1') || 'Squadra A';
-const colore1 = localStorage.getItem('colore1') || '#ffae00';
-const avatar1 = localStorage.getItem('avatar1') || '';
+function refreshGameFromStorage(){
+  const nome1 = localStorage.getItem('nome1') || 'Squadra A';
+  const colore1 = localStorage.getItem('colore1') || '#ffae00';
+  const avatar1 = localStorage.getItem('avatar1') || '';
 
-const nome2 = localStorage.getItem('nome2') || 'Squadra B';
-const colore2 = localStorage.getItem('colore2') || '#ffae00';
-const avatar2 = localStorage.getItem('avatar2') || '';
+  const nome2 = localStorage.getItem('nome2') || 'Squadra B';
+  const colore2 = localStorage.getItem('colore2') || '#ffae00';
+  const avatar2 = localStorage.getItem('avatar2') || '';
 
-document.getElementById('nomeA').textContent = nome1;
-document.getElementById('avatarA').src = avatar1 ? 'assets/avatars/'+avatar1 : '';
-document.getElementById('teamA').style.borderColor = colore1;
+  teamNameA = nome1;
+  teamNameB = nome2;
 
-document.getElementById('nomeB').textContent = nome2;
-document.getElementById('avatarB').src = avatar2 ? 'assets/avatars/'+avatar2 : '';
-document.getElementById('teamB').style.borderColor = colore2;
+  document.getElementById('nomeA').textContent = nome1;
+  document.getElementById('avatarA').src = avatar1 ? 'assets/avatars/'+avatar1 : '';
+  document.getElementById('teamA').style.borderColor = colore1;
+
+  document.getElementById('nomeB').textContent = nome2;
+  document.getElementById('avatarB').src = avatar2 ? 'assets/avatars/'+avatar2 : '';
+  document.getElementById('teamB').style.borderColor = colore2;
+}
+
+window.refreshGameFromStorage = refreshGameFromStorage;
+refreshGameFromStorage();
 
 let currentRound = 0;
 
@@ -25,7 +35,7 @@ function changeRound(roundNumber){
   currentRound = roundNumber;
 
   /* aggiorna titolo */
-  const title = document.querySelector("h1");
+  const title = document.getElementById('gameTitle');
   title.textContent = roundNumber === 0 ? "Round di prova" : "Round " + roundNumber;
 
   /* evidenzia bottone attivo */
@@ -144,9 +154,9 @@ function checkStrikes() {
   const strikesB = document.querySelectorAll('#teamB .strike.active').length;
 
   if (strikesA === 3) {
-    showRoundDecisivo(nome2);
+    showRoundDecisivo(teamNameB);
   } else if (strikesB === 3) {
-    showRoundDecisivo(nome1);
+    showRoundDecisivo(teamNameA);
   }
 }
 
@@ -313,7 +323,7 @@ function loadRoundData(roundNumber){
   if(!round) return;
 
   /* cambia titolo personalizzato */
-  const title = document.querySelector("h1");
+  const title = document.getElementById('gameTitle');
   title.textContent = round.title;
 
   const data = round.answers;
