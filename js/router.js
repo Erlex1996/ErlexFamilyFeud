@@ -1,6 +1,26 @@
+function getBasePath(){
+  const baseUrl = new URL(document.baseURI);
+  const basePath = baseUrl.pathname.replace(/\/$/, '');
+  return basePath;
+}
+
+function toRelativePath(fullPath, basePath){
+  if (basePath && fullPath.startsWith(basePath)) {
+    const relative = fullPath.slice(basePath.length) || '/';
+    return relative.startsWith('/') ? relative : '/' + relative;
+  }
+  return fullPath || '/';
+}
+
+function toFullPath(routePath, basePath){
+  return basePath ? basePath + routePath : routePath;
+}
+
 function renderRoute(){
+  const basePath = getBasePath();
   const path = window.location.pathname.replace(/\/$/, '') || '/';
-  const target = path === '/' ? '/menu' : path;
+  const relativePath = toRelativePath(path, basePath);
+  const target = relativePath === '/' ? '/menu' : relativePath;
   const routes = Array.from(document.querySelectorAll('[data-route]'));
   const hasRoute = routes.some(section => section.dataset.route === target);
   const finalTarget = hasRoute ? target : '/menu';
@@ -12,8 +32,9 @@ function renderRoute(){
   document.body.classList.toggle('route-menu', finalTarget === '/menu');
   document.body.classList.toggle('route-game', finalTarget === '/game');
 
-  if (path !== finalTarget) {
-    history.replaceState({}, '', finalTarget);
+  const fullTarget = toFullPath(finalTarget, basePath);
+  if (path !== fullTarget) {
+    history.replaceState({}, '', fullTarget);
   }
 
   if (finalTarget === '/game' && typeof window.refreshGameFromStorage === 'function') {
@@ -24,7 +45,9 @@ function renderRoute(){
 }
 
 function appNavigate(path){
-  history.pushState({}, '', path);
+  const basePath = getBasePath();
+  const fullPath = toFullPath(path, basePath);
+  history.pushState({}, '', fullPath);
   renderRoute();
 }
 

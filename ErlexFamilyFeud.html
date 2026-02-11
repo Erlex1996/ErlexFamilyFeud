@@ -4,12 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Erlex Family Feud</title>
-  <meta http-equiv="refresh" content="0; url=/game">
+  <base id="appBase" href="/">
+  <script>
+    (function() {
+      var basePath = location.pathname.split('/').filter(Boolean)[0];
+      var base = basePath === 'ErlexFamilyFeud' ? '/ErlexFamilyFeud/' : '/';
+      document.getElementById('appBase').setAttribute('href', base);
+      window.location.replace(base + 'game');
+    })();
+  </script>
 </head>
 <body>
-  <p>Reindirizzamento in corso... Se non funziona, apri <a href="/game">/game</a>.</p>
-  <script>
-    window.location.replace('/game');
-  </script>
+  <p>Reindirizzamento in corso... Se non funziona, apri <a href="game">/game</a>.</p>
 </body>
 </html>

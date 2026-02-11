@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Erlex Family Feud</title>
+<base id="appBase" href="/">
+<script>
+  (function() {
+    var basePath = location.pathname.split('/').filter(Boolean)[0];
+    var base = basePath === 'ErlexFamilyFeud' ? '/ErlexFamilyFeud/' : '/';
+    document.getElementById('appBase').setAttribute('href', base);
+  })();
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/menu.css">

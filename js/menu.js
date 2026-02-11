@@ -60,9 +60,12 @@ let coloreScelto={1:colori[0],2:colori[5]};
 function mostraColore(event,s){
   const colore=colori[coloreIndex[s]];
   const divColore=document.getElementById('coloreMostrato'+s);
-  divColore.style.background=colore;
-  divColore.style.border='3px solid #fff';
-  divColore.style.borderRadius='50%';
+  if (divColore) {
+    divColore.style.background = colore;
+    divColore.style.border = "3px solid #fff";
+    divColore.style.borderRadius = "50%";
+  } 
+  
   coloreScelto[s]=colore;
   event.target.closest('.squadra-inner').style.borderColor=colore;
   event.target.closest('.squadra-inner').style.borderSize='3px';
@@ -93,7 +96,7 @@ function avviaGioco(){
   if (typeof window.appNavigate === 'function') {
     window.appNavigate('/game');
   } else {
-    window.location.href='/game';
+    window.location.href='game';
   }
 }
 
