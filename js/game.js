@@ -29,14 +29,55 @@ window.refreshGameFromStorage = refreshGameFromStorage;
 refreshGameFromStorage();
 
 let currentRound = 0;
+let titleRevealTimer;
+let pendingTitleText = '';
+
+function setCategoryPlaceholder(titleText){
+  const titleEl = document.getElementById('gameTitle');
+  if(!titleEl) return;
+
+  clearInterval(titleRevealTimer);
+  pendingTitleText = titleText || '';
+  titleEl.textContent = 'Scopri categoria';
+  titleEl.dataset.revealed = 'false';
+  titleEl.classList.add('category-placeholder');
+
+  requestAnimationFrame(() => {
+    const height = titleEl.getBoundingClientRect().height;
+    if(height > 0){
+      titleEl.style.minHeight = Math.ceil(height) + 'px';
+    }
+  });
+}
+
+function revealCategoryTitle(){
+  const titleEl = document.getElementById('gameTitle');
+  if(!titleEl || titleEl.dataset.revealed === 'true') return;
+  if(!pendingTitleText) return;
+
+  clearInterval(titleRevealTimer);
+  titleEl.dataset.revealed = 'true';
+  titleEl.textContent = '';
+  titleEl.classList.remove('category-placeholder');
+
+  let index = 0;
+  titleRevealTimer = setInterval(() => {
+    titleEl.textContent = pendingTitleText.slice(0, index + 1);
+    index += 1;
+    if(index >= pendingTitleText.length){
+      clearInterval(titleRevealTimer);
+    }
+  }, 40);
+}
+
+const titleEl = document.getElementById('gameTitle');
+if(titleEl){
+  titleEl.addEventListener('click', revealCategoryTitle);
+}
 
 function changeRound(roundNumber){
 
   currentRound = roundNumber;
-
-  /* aggiorna titolo */
-  const title = document.getElementById('gameTitle');
-  title.textContent = roundNumber === 0 ? "Round di prova" : "Round " + roundNumber;
 
   /* evidenzia bottone attivo */
   document.querySelectorAll('.round-btn').forEach(btn=>{
@@ -138,23 +179,30 @@ document.getElementById('backButton').addEventListener('click',() => {
   }
 });
 
-document.querySelectorAll('.round-box').forEach(box=>{
-  box.addEventListener('click',()=>{
-    const isActivating = !box.classList.contains('active');
-    box.classList.toggle('active');
+function setupRoundBoxHandlers(){
+  document.querySelectorAll('.round-box').forEach(box=>{
+    box.addEventListener('click',()=>{
+      const isActivating = !box.classList.contains('active');
+      box.classList.toggle('active');
 
-    if(isActivating){
-      const s = document.getElementById('roundSound');
-      s.currentTime = 0;
-      s.play();
+      if(isActivating){
+        const s = document.getElementById('roundSound');
+        s.currentTime = 0;
+        s.play();
 
-      // Ferma musica tensione
-      const tensione = document.getElementById('tensioneSound');
-      tensione.pause();
-      tensione.currentTime = 0;
-    }
+        // Ferma musica tensione
+        const tensione = document.getElementById('tensioneSound');
+        tensione.pause();
+        tensione.currentTime = 0;
+
+        const maxRound = roundsData.length - 1;
+        if(maxRound > currentRound){
+          changeRound(currentRound + 1);
+        }
+      }
+    });
   });
-});
+}
 
 function checkStrikes() {
   const strikesA = document.querySelectorAll('#teamA .strike.active').length;
@@ -214,259 +262,39 @@ document.querySelectorAll('.strike').forEach(btn=>{
 /* =============================
    DATI DI TUTTI I ROUND
 ============================= */
+let roundsData = [];
 
-const roundsData = [
+function buildRoundBoxes(totalRounds){
+  const roundsPerRow = 5;
+  const containers = document.querySelectorAll('.rounds-container');
 
-/* ROUND 0 */
-{
-title:"Round di prova",
-answers:[
-{ text:"Vale", score:30 },
-{ text:"Dig", score:25 },
-{ text:"Livia", score:20 },
-{ text:"Ceci", score:15 },
-{ text:"Menicu", score:13 },
-{ text:"Giulia", score:10 },
-{ text:"Pablo", score:7 },
-{ text:"Erlex", score:5 }
-]
-},
+  containers.forEach(container => {
+    container.innerHTML = '';
+    let currentRow = null;
 
-/* ROUND 1 */
-{
-title:"Paesi più visitati al mondo",
-answers:[
-{ text:"Francia", score:30 },
-{ text:"Spagna", score:25 },
-{ text:"Stati Uniti", score:20 },
-{ text:"Cina", score:15 },
-{ text:"Italia", score:13 },
-{ text:"Turchia", score:10 },
-{ text:"Messico", score:7 },
-{ text:"Germania", score:5 }
-]
-},
+    for(let i = 1; i <= totalRounds; i += 1){
+      if((i - 1) % roundsPerRow === 0){
+        currentRow = document.createElement('div');
+        currentRow.className = 'rounds-row';
+        container.appendChild(currentRow);
+      }
 
-/* ROUND 2 */
-{
-title:"Cibi più ordinati al mondo",
-answers:[
-{ text:"Pizza", score:30 },
-{ text:"Hamburger", score:25 },
-{ text:"Sushi", score:20 },
-{ text:"Pasta", score:15 },
-{ text:"Insalata", score:13 },
-{ text:"Dolci", score:10 },
-{ text:"Bevande", score:7 },
-{ text:"Kebab", score:5 }
-]
-},
-
-/* ROUND 3 */
-{
-title:"Artisti più ascoltati su Spotify nel 2025",
-answers:[
-{ text:"Bad Bunny", score:30 },
-{ text:"Taylor Swift", score:25 },
-{ text:"The Weeknd", score:20 },
-{ text:"Drake", score:15 },
-{ text:"Billie Eilish", score:13 },
-{ text:"Kendrick Lamar", score:10 },
-{ text:"Bruno Mars", score:7 },
-{ text:"Ariana Grande", score:5 }
-]
-},
-
-/* ROUND 4 */
-{
-title:"Le serie di Netflix più viste di sempre (totale di tutte le stagioni)",
-answers:[
-{ text:"Squid Game", score:30 },
-{ text:"Wednesday", score:25 },
-{ text:"Stranger Things", score:20 },
-{ text:"La Casa di Carta", score:15 },
-{ text:"Bridgerton", score:13 },
-{ text:"Adolescence", score:10 },
-{ text:"DAHMER: Monster", score:7 },
-{ text:"La Regina degli Scacchi", score:5 }
-]
-},
-
-/* ROUND 5 */
-{
-title:"Le abitudini più comuni appena ci si sveglia",
-answers:[
-{ text:"Fare Colazione", score:30 },
-{ text:"Bere Acqua", score:25 },
-{ text:"Lavarsi", score:20 },
-{ text:"Controllare lo Smartphone", score:15 },
-{ text:"Andare in Bagno", score:13 },
-{ text:"Stretching", score:10 },
-{ text:"Guardare notizie Radio/TV", score:7 },
-{ text:"Vestirsi/Truccarsi", score:5 }
-]
-},
-
-/* ROUND 6 */
-{
-title:"Le preoccupazioni globali più diffuse",
-answers:[
-{ text:"Inflazione/Costo della vita", score:30 },
-{ text:"Guerra e violenze", score:25 },
-{ text:"Povertà e disuguaglianza", score:20 },
-{ text:"Disoccupazione", score:15 },
-{ text:"Corruzione politica", score:13 },
-{ text:"Sistema sanitario", score:10 },
-{ text:"Immigrazione", score:7 },
-{ text:"Cambiamento climatico", score:5 }
-]
-},
-
-/* ROUND 7 */
-{
-title:"Le app più usate in termini di tempo di utilizzo nel 2025",
-answers:[
-{ text:"TikTok", score:30 },
-{ text:"ChatGPT", score:25 },
-{ text:"YouTube", score:20 },
-{ text:"Facebook", score:15 },
-{ text:"Instagram", score:13 },
-{ text:"WhatsApp", score:10 },
-{ text:"Snapchat", score:7 },
-{ text:"Telegram", score:5 }
-]
-},
-
-/* ROUND 8 */
-{
-title:"Animali più intelligenti (intelligenza combinata)",
-answers:[
-{ text:"Scimpanzé", score:30 },
-{ text:"Orango", score:25 },
-{ text:"Bonobo", score:20 },
-{ text:"Gorilla", score:15 },
-{ text:"Delfino", score:13 },
-{ text:"Elefante", score:10 },
-{ text:"Corvo imperiale", score:7 },
-{ text:"Orca", score:5 }
-]
-},
-
-/* ROUND 9 */
-{
-title:"Profili Instagram più seguiti in assoluto",
-answers:[
-{ text:"Instagram", score:30 },
-{ text:"Cristiano Ronaldo", score:25 },
-{ text:"Lionel Messi", score:20 },
-{ text:"Selena Gomez", score:15 },
-{ text:"Kylie Jenner", score:13 },
-{ text:"Dwayne Johnson", score:10 },
-{ text:"Ariana Grande", score:7 },
-{ text:"Kim Kardashian", score:5 }
-]
-},
-
-/* ROUND 10 */
-{
-title:"Lingue più parlate al mondo (totale parlanti)",
-answers:[
-{ text:"Inglese", score:30 },
-{ text:"Mandarino", score:25 },
-{ text:"Hindi", score:20 },
-{ text:"Spagnolo", score:15 },
-{ text:"Francese", score:13 },
-{ text:"Arabo", score:10 },
-{ text:"Bengalese", score:7 },
-{ text:"Portoghese", score:5 }
-]
-},
-
-/* ROUND 11 */
-{
-title:"Tour musical più redditizi di sempre",
-answers:[
-{ text:"Taylor Swift", score:30 },
-{ text:"Coldplay", score:25 },
-{ text:"Elton John", score:20 },
-{ text:"Ed Sheeran", score:15 },
-{ text:"U2", score:13 },
-{ text:"Bruce Springsteen", score:10 },
-{ text:"The Weeknd", score:7 },
-{ text:"Roger Waters", score:5 }
-]
-}, 
-
-/* ROUND 12 */
-{
-title:"Personaggi storici più rappresentati nei media",
-answers:[
-{ text:"Gesù Cristo", score:30 },
-{ text:"Adolf Hitler", score:25 },
-{ text:"Abraham Lincoln", score:20 },
-{ text:"Napoleone Bonaparte", score:15 },
-{ text:"Cleopatra", score:13 },
-{ text:"Gandhi", score:10 },
-{ text:"Albert Einstein", score:7 },
-{ text:"William Shakespeare", score:5 }
-]
-},
-
-/* ROUND 13 */
-{
-title:"Monumenti più fotografati al mondo",
-answers:[
-{ text:"Eiffel Tower", score:30 },
-{ text:"Taj Mahal", score:25 },
-{ text:"Statue of Liberty", score:20 },
-{ text:"Colosseo", score:15 },
-{ text:"Big Ben", score:13 },
-{ text:"Burj Khalifa", score:10 },
-{ text:"Great Wall", score:7 },
-{ text:"Cristo Redentore", score:5 }
-]
-},
-
-/* ROUND 14 */
-{
-title:"Strumenti musicali più praticati e diffusi",
-answers:[
-{ text:"Chitarra", score:30 },
-{ text:"Pianoforte", score:25 },
-{ text:"Violino", score:20 },
-{ text:"Batteria", score:15 },
-{ text:"Flauto", score:13 },
-{ text:"Sax", score:10 },
-{ text:"Tromba", score:7 },
-{ text:"Ukulele", score:5 }
-]
-},
-
-/* ROUND 15 */
-{
-title:"Classi più giocate in D&D 5e",
-answers:[
-{ text:"Guerriero", score:30 },
-{ text:"Mago", score:25 },
-{ text:"Ladro", score:20 },
-{ text:"Chierico", score:15 },
-{ text:"Paladino", score:13 },
-{ text:"Ranger", score:10 },
-{ text:"Warlock", score:7 },
-{ text:"Druido", score:5 }
-]
+      const box = document.createElement('div');
+      box.className = 'round-box';
+      currentRow.appendChild(box);
+    }
+  });
 }
-
-];
 
 function loadRoundData(roundNumber){
 
   const round = roundsData[roundNumber];
-  if(!round) return;
+  if(!round){
+    setCategoryPlaceholder('');
+    return;
+  }
 
-  /* cambia titolo personalizzato */
-  const title = document.getElementById('gameTitle');
-  title.textContent = round.title;
+  setCategoryPlaceholder(round.title);
 
   const data = round.answers;
   const boxes = document.querySelectorAll(".answer-box");
@@ -479,5 +307,25 @@ function loadRoundData(roundNumber){
     scoreEl.textContent = data[i].score;
   });
 
+  if (typeof window.normalizeAnswerHeights === 'function') {
+    requestAnimationFrame(window.normalizeAnswerHeights);
+  }
 }
-changeRound(0);
+
+async function initRoundsData(){
+  try {
+    const response = await fetch('data/rounds.json', { cache: 'no-store' });
+    if(!response.ok) throw new Error('Rounds fetch failed');
+    roundsData = await response.json();
+  } catch (error) {
+    console.error('Errore caricamento rounds.json', error);
+    roundsData = [];
+  }
+
+  const totalRounds = Math.max(roundsData.length - 1, 1);
+  buildRoundBoxes(totalRounds);
+  setupRoundBoxHandlers();
+  changeRound(0);
+}
+
+initRoundsData();
