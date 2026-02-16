@@ -307,7 +307,7 @@ answers:[
 ]
 },
 
-/* ROUND 5 */
+/* ROUND 6 */
 {
 title:"Le preoccupazioni globali più diffuse",
 answers:[
@@ -319,6 +319,21 @@ answers:[
 { text:"Sistema sanitario", score:10 },
 { text:"Immigrazione", score:7 },
 { text:"Cambiamento climatico", score:5 }
+]
+},
+
+/* ROUND 7 */
+{
+title:"Le app più usate in termini di tempo di utilizzo nel 2025",
+answers:[
+{ text:"TikTok", score:30 },
+{ text:"ChatGPT", score:25 },
+{ text:"YouTube", score:20 },
+{ text:"Facebook", score:15 },
+{ text:"Instagram", score:13 },
+{ text:"WhatsApp", score:10 },
+{ text:"Snapchat", score:7 },
+{ text:"Telegram", score:5 }
 ]
 }
 
