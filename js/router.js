@@ -1,4 +1,4 @@
-const APP_VERSION = "v0.0.2";
+const APP_VERSION = "v0.0.3";
 console.log("Erlex Family Feud", APP_VERSION);
 
 function getBasePath() {
