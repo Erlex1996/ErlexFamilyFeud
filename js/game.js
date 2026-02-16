@@ -365,8 +365,37 @@ answers:[
 { text:"Ariana Grande", score:7 },
 { text:"Kim Kardashian", score:5 }
 ]
-}
+},
 
+/* ROUND 10 */
+{
+title:"Lingue più parlate al mondo (totale parlanti)",
+answers:[
+{ text:"Inglese", score:30 },
+{ text:"Mandarino", score:25 },
+{ text:"Hindi", score:20 },
+{ text:"Spagnolo", score:15 },
+{ text:"Francese", score:13 },
+{ text:"Arabo", score:10 },
+{ text:"Bengalese", score:7 },
+{ text:"Portoghese", score:5 }
+]
+},
+
+/* ROUND 11 */
+{
+title:"Tour musical più redditizi di sempre",
+answers:[
+{ text:"Taylor Swift", score:30 },
+{ text:"Coldplay", score:25 },
+{ text:"Elton John", score:20 },
+{ text:"Ed Sheeran", score:15 },
+{ text:"U2", score:13 },
+{ text:"Bruce Springsteen", score:10 },
+{ text:"The Weeknd", score:7 },
+{ text:"Roger Waters", score:5 }
+]
+}
 ];
 
 function loadRoundData(roundNumber){
