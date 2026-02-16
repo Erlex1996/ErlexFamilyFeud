@@ -368,6 +368,10 @@ document.querySelectorAll('.strike').forEach(btn=>{
     if(isActivating) s.currentTime=0.5;
     s.play();
     checkStrikes();
+
+    if(isActivating && activeTeam){
+      setActiveTeam(activeTeam === 'A' ? 'B' : 'A');
+    }
   });
 });
 
