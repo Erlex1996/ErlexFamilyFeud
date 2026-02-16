@@ -1,4 +1,4 @@
-const avatarLista = ['dino.png','wolf.png','cat.png','spider.png','eagle.png','turtle.png','mouse.png','hat.png','car.png','elephant.png'];
+const avatarLista = ['dino.png','wolf.png','cat.png','spider.png','eagle.png','turtle.png','mouse.png','hat.png','car.png','elephant.png','panda.png'];
 let avatarIndex = {1:0,2:1};
 let avatarSelezionato = {1:null,2:null};
 
