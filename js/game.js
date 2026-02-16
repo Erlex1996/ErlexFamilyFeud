@@ -335,6 +335,36 @@ answers:[
 { text:"Snapchat", score:7 },
 { text:"Telegram", score:5 }
 ]
+},
+
+/* ROUND 8 */
+{
+title:"Animali più intelligenti (intelligenza combinata)",
+answers:[
+{ text:"Scimpanzé", score:30 },
+{ text:"Orango", score:25 },
+{ text:"Bonobo", score:20 },
+{ text:"Gorilla", score:15 },
+{ text:"Delfino", score:13 },
+{ text:"Elefante", score:10 },
+{ text:"Corvo imperiale", score:7 },
+{ text:"Orca", score:5 }
+]
+},
+
+/* ROUND 9 */
+{
+title:"Profili Instagram più seguiti in assoluto",
+answers:[
+{ text:"Instagram", score:30 },
+{ text:"Cristiano Ronaldo", score:25 },
+{ text:"Lionel Messi", score:20 },
+{ text:"Selena Gomez", score:15 },
+{ text:"Kylie Jenner", score:13 },
+{ text:"Dwayne Johnson", score:10 },
+{ text:"Ariana Grande", score:7 },
+{ text:"Kim Kardashian", score:5 }
+]
 }
 
 ];
