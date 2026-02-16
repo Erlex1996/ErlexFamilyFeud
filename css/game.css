@@ -169,11 +169,16 @@ body.route-game::before {
 
 .score-buttons button {
   font-size: 1.2em;
-  padding: 5px 12px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .score-buttons .add { background-color: #4CAF50; color: white; }
@@ -375,7 +380,7 @@ body.route-game::before {
 @media (max-width:500px){
   h1 { font-size:1.5em; }
   .answer-box { font-size:1em; padding:8px 10px; min-height:45px; width:100%; box-sizing:border-box; }
-  .score-buttons button { font-size:1em; padding:4px 8px; }
+  .score-buttons button { font-size:1em; width:32px; height:32px; }
   .strike{ width:25px; height:25px; }
   .round-box{ width:20px; height:20px; }
   .team-score { padding-top:60px; }
