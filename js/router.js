@@ -1,4 +1,4 @@
-const APP_VERSION = "v0.0.3";
+const APP_VERSION = "v0.0.4";
 console.log("Erlex Family Feud", APP_VERSION);
 
 function getBasePath() {
@@ -45,6 +45,10 @@ function renderRoute() {
     typeof window.refreshGameFromStorage === "function"
   ) {
     window.refreshGameFromStorage();
+  }
+
+  if (finalTarget === "/game" && typeof window.showTurnModal === "function") {
+    window.showTurnModal();
   }
 
   window.scrollTo(0, 0);

@@ -88,6 +88,20 @@
   <audio id="roundSound" src="assets/audio/vittoria_round.mp3" preload="auto"></audio>
   <audio id="tensioneSound" src="assets/audio/musica_tensione.mp3" preload="auto" loop></audio>
 
+  <div id="turnModal" class="turn-modal" aria-hidden="true">
+    <div class="turn-modal-content">
+      <div class="turn-modal-title">Chi inizia?</div>
+      <div class="turn-wheel-wrap">
+        <div class="turn-pointer"></div>
+        <div id="turnWheel" class="turn-wheel">
+          <div id="wheelLabelA" class="wheel-label wheel-label-a">Squadra A</div>
+          <div id="wheelLabelB" class="wheel-label wheel-label-b">Squadra B</div>
+        </div>
+      </div>
+      <button id="turnSpinButton" class="turn-spin-btn">Gira la ruota</button>
+    </div>
+  </div>
+
   <button id="restartButton">Restart</button>
   <button id="backButton" class="btn"><i class="bi bi-arrow-left"></i></button>
 

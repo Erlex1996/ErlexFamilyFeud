@@ -19,10 +19,12 @@ function refreshGameFromStorage(){
   document.getElementById('nomeA').textContent = nome1;
   document.getElementById('avatarA').src = avatar1 ? 'assets/avatars/'+avatar1 : '';
   document.getElementById('teamA').style.borderColor = colore1;
+  document.getElementById('teamA').style.setProperty('--team-color', colore1);
 
   document.getElementById('nomeB').textContent = nome2;
   document.getElementById('avatarB').src = avatar2 ? 'assets/avatars/'+avatar2 : '';
   document.getElementById('teamB').style.borderColor = colore2;
+  document.getElementById('teamB').style.setProperty('--team-color', colore2);
 }
 
 window.refreshGameFromStorage = refreshGameFromStorage;
@@ -31,6 +33,10 @@ refreshGameFromStorage();
 let currentRound = 0;
 let titleRevealTimer;
 let pendingTitleText = '';
+let activeTeam = null;
+let initialTeam = null;
+let wheelRotation = 0;
+let isWheelSpinning = false;
 
 function setCategoryPlaceholder(titleText){
   const titleEl = document.getElementById('gameTitle');
@@ -49,6 +55,101 @@ function setCategoryPlaceholder(titleText){
     }
   });
 }
+
+function setActiveTeam(team){
+  activeTeam = team;
+  const teamA = document.getElementById('teamA');
+  const teamB = document.getElementById('teamB');
+  if(teamA && teamB){
+    teamA.classList.toggle('turno-attivo', team === 'A');
+    teamB.classList.toggle('turno-attivo', team === 'B');
+  }
+}
+
+function getTeamScores(){
+  const scoreA = parseInt(document.getElementById('scoreA')?.textContent || '0', 10);
+  const scoreB = parseInt(document.getElementById('scoreB')?.textContent || '0', 10);
+  return { scoreA, scoreB };
+}
+
+function chooseTeamForNextRound(){
+  const { scoreA, scoreB } = getTeamScores();
+  if(scoreA < scoreB) return 'A';
+  if(scoreB < scoreA) return 'B';
+  return pickRandomTeam();
+}
+
+function pickRandomTeam(){
+  return Math.random() < 0.5 ? 'A' : 'B';
+}
+
+function updateWheelLabels(){
+  const labelA = document.getElementById('wheelLabelA');
+  const labelB = document.getElementById('wheelLabelB');
+  const nameA = document.getElementById('nomeA')?.textContent || 'Squadra A';
+  const nameB = document.getElementById('nomeB')?.textContent || 'Squadra B';
+  if(labelA) labelA.textContent = nameA;
+  if(labelB) labelB.textContent = nameB;
+
+  const colorA = document.getElementById('teamA')?.style.borderColor || '#ffae00';
+  const colorB = document.getElementById('teamB')?.style.borderColor || '#ffae00';
+  const wheel = document.getElementById('turnWheel');
+  if(wheel){
+    wheel.style.background = `conic-gradient(${colorA} 0deg 180deg, ${colorB} 180deg 360deg)`;
+  }
+}
+
+function showTurnModal(){
+  updateWheelLabels();
+  const modal = document.getElementById('turnModal');
+  if(modal){
+    modal.classList.add('show');
+  }
+}
+
+function hideTurnModal(){
+  const modal = document.getElementById('turnModal');
+  if(modal){
+    modal.classList.remove('show');
+  }
+}
+
+function spinWheel(){
+  if(isWheelSpinning) return;
+  const wheel = document.getElementById('turnWheel');
+  const button = document.getElementById('turnSpinButton');
+  if(!wheel) return;
+
+  isWheelSpinning = true;
+  if(button) button.disabled = true;
+  const winner = pickRandomTeam();
+  const baseSpins = 4 + Math.floor(Math.random() * 5);
+  const sliceOffset = 20 + Math.floor(Math.random() * 140);
+  const desiredTopAngle = winner === 'A' ? sliceOffset : 180 + sliceOffset;
+  const targetModulo = (360 - desiredTopAngle) % 360;
+  const currentModulo = ((wheelRotation % 360) + 360) % 360;
+  const delta = (targetModulo - currentModulo + 360) % 360;
+  wheelRotation = wheelRotation + baseSpins * 360 + delta;
+
+  const duration = 3 + Math.random() * 1.2;
+  wheel.style.transition = `transform ${duration}s cubic-bezier(0.2, 0.8, 0.2, 1)`;
+  wheel.style.transform = `rotate(${wheelRotation}deg)`;
+
+  setTimeout(() => {
+    isWheelSpinning = false;
+    initialTeam = winner;
+    setActiveTeam(winner);
+    hideTurnModal();
+    if(button) button.disabled = false;
+  }, duration * 1000 + 150);
+}
+
+const spinBtn = document.getElementById('turnSpinButton');
+if(spinBtn){
+  spinBtn.addEventListener('click', spinWheel);
+}
+
+window.showTurnModal = showTurnModal;
 
 function revealCategoryTitle(){
   const titleEl = document.getElementById('gameTitle');
@@ -78,6 +179,7 @@ if(titleEl){
 function changeRound(roundNumber){
 
   currentRound = roundNumber;
+  const nextTeam = chooseTeamForNextRound();
 
   /* evidenzia bottone attivo */
   document.querySelectorAll('.round-btn').forEach(btn=>{
@@ -90,6 +192,9 @@ function changeRound(roundNumber){
   /* RESET SOLO GAMEPLAY */
   loadRoundData(roundNumber);
   resetRoundState();
+  if(!(activeTeam === null && initialTeam === null)){
+    setActiveTeam(nextTeam);
+  }
 }
 
 function resetRoundState(){
@@ -134,10 +239,12 @@ function revealAnswer(index){
 function changeScore(team,delta){
   const scoreEl=document.getElementById(team==='A'?'scoreA':'scoreB');
   let score=parseInt(scoreEl.textContent);
+  let pointsAssigned = false;
   if(team==='A'){
     if(!firstClickAppliedA && delta===1 && lastRevealedScore>0){
       score+=lastRevealedScore;
       firstClickAppliedA=true;
+      pointsAssigned = true;
     }else{
       score+=delta;
     }
@@ -145,12 +252,17 @@ function changeScore(team,delta){
     if(!firstClickAppliedB && delta===1 && lastRevealedScore>0){
       score+=lastRevealedScore;
       firstClickAppliedB=true;
+      pointsAssigned = true;
     }else{
       score+=delta;
     }
   }
   if(score<0) score=0;
   scoreEl.textContent=score;
+
+  if(pointsAssigned){
+    setActiveTeam(team === 'A' ? 'B' : 'A');
+  }
 }
 
 function restartGame(){
