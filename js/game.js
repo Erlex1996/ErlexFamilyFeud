@@ -395,7 +395,68 @@ answers:[
 { text:"The Weeknd", score:7 },
 { text:"Roger Waters", score:5 }
 ]
+}, 
+
+/* ROUND 12 */
+{
+title:"Personaggi storici più rappresentati nei media",
+answers:[
+{ text:"Gesù Cristo", score:30 },
+{ text:"Adolf Hitler", score:25 },
+{ text:"Abraham Lincoln", score:20 },
+{ text:"Napoleone Bonaparte", score:15 },
+{ text:"Cleopatra", score:13 },
+{ text:"Gandhi", score:10 },
+{ text:"Albert Einstein", score:7 },
+{ text:"William Shakespeare", score:5 }
+]
+},
+
+/* ROUND 13 */
+{
+title:"Monumenti più fotografati al mondo",
+answers:[
+{ text:"Eiffel Tower", score:30 },
+{ text:"Taj Mahal", score:25 },
+{ text:"Statue of Liberty", score:20 },
+{ text:"Colosseo", score:15 },
+{ text:"Big Ben", score:13 },
+{ text:"Burj Khalifa", score:10 },
+{ text:"Great Wall", score:7 },
+{ text:"Cristo Redentore", score:5 }
+]
+},
+
+/* ROUND 14 */
+{
+title:"Strumenti musicali più praticati e diffusi",
+answers:[
+{ text:"Chitarra", score:30 },
+{ text:"Pianoforte", score:25 },
+{ text:"Violino", score:20 },
+{ text:"Batteria", score:15 },
+{ text:"Flauto", score:13 },
+{ text:"Sax", score:10 },
+{ text:"Tromba", score:7 },
+{ text:"Ukulele", score:5 }
+]
+},
+
+/* ROUND 15 */
+{
+title:"Classi più giocate in D&D 5e",
+answers:[
+{ text:"Guerriero", score:30 },
+{ text:"Mago", score:25 },
+{ text:"Ladro", score:20 },
+{ text:"Chierico", score:15 },
+{ text:"Paladino", score:13 },
+{ text:"Ranger", score:10 },
+{ text:"Warlock", score:7 },
+{ text:"Druido", score:5 }
+]
 }
+
 ];
 
 function loadRoundData(roundNumber){
