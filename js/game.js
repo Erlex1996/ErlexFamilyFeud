@@ -224,6 +224,12 @@ function resetRoundState(){
 }
 
 function revealAnswer(index){
+
+    // FERMA MUSICA TENSIONE
+  const tensione = document.getElementById('tensioneSound');
+  tensione.pause();
+  tensione.currentTime = 0;
+  
   const allBoxes=document.querySelectorAll(".answer-box");
   const box=allBoxes[index];
   const text=box.querySelector(".answer-text");
