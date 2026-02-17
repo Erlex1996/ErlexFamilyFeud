@@ -1,4 +1,4 @@
-const APP_VERSION = "v0.0.4";
+const APP_VERSION = "v0.0.5";
 console.log("Erlex Family Feud", APP_VERSION);
 
 function getBasePath() {
@@ -23,15 +23,16 @@ function renderRoute() {
   const basePath = getBasePath();
   const path = window.location.pathname.replace(/\/$/, "") || "/";
   const relativePath = toRelativePath(path, basePath);
-  const target = relativePath === "/" ? "/menu" : relativePath;
+  const target = relativePath === "/" ? "/hub" : relativePath;
   const routes = Array.from(document.querySelectorAll("[data-route]"));
   const hasRoute = routes.some((section) => section.dataset.route === target);
-  const finalTarget = hasRoute ? target : "/menu";
+  const finalTarget = hasRoute ? target : "/hub";
 
   routes.forEach((section) => {
     section.classList.toggle("active", section.dataset.route === finalTarget);
   });
 
+  document.body.classList.toggle("route-hub", finalTarget === "/hub");
   document.body.classList.toggle("route-menu", finalTarget === "/menu");
   document.body.classList.toggle("route-game", finalTarget === "/game");
 
@@ -64,4 +65,3 @@ function appNavigate(path) {
 window.appNavigate = appNavigate;
 window.addEventListener("popstate", renderRoute);
 window.addEventListener("DOMContentLoaded", renderRoute);
-

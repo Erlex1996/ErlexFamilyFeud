@@ -18,8 +18,9 @@
     }
   })();
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Luckiest+Guy&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/hub.css">
 <link rel="stylesheet" href="css/menu.css">
 <link rel="stylesheet" href="css/game.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -34,6 +35,40 @@
           <button id="cominciaBtn">Comincia!</button>
       </div>
   </div>
+
+<section class="route" data-route="/hub">
+  <div class="hub">
+    <div class="hub-hero">
+      <span class="hub-kicker">Erlex Game Hub</span>
+      <h1>Raccoglitore Giochi</h1>
+      <p>Scegli un gioco e preparati a sfidare gli amici.</p>
+    </div>
+
+    <div class="hub-grid">
+      <article class="hub-card hub-card-primary">
+        <div class="hub-card-media">
+          <img src="assets/images/Logo.png" alt="Family Feud">
+        </div>
+        <div class="hub-card-body">
+          <h2>Family Feud</h2>
+          <p>Gioco a squadre con domande rapide, punti e round da spettacolo.</p>
+          <button class="hub-cta" onclick="if (window.appNavigate) { window.appNavigate('/menu'); } else { window.location.href = 'menu'; }">Entra</button>
+        </div>
+      </article>
+
+      <article class="hub-card hub-card-locked" aria-disabled="true">
+        <div class="hub-card-media">
+          <div class="hub-card-placeholder">Prossimamente</div>
+        </div>
+        <div class="hub-card-body">
+          <h2>Nuovo gioco</h2>
+          <p>Slot libero per il prossimo progetto. Aggiungi qui la tua idea.</p>
+          <button class="hub-cta" disabled>In arrivo</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
 <section class="route" data-route="/menu">
   <div class="menu">

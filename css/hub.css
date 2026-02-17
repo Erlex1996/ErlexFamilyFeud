@@ -1,0 +1,167 @@
+body.route-hub {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    color: #fef6e6;
+    background: radial-gradient(circle at top, #2a0f1b 0%, #12070d 45%, #070509 100%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+body.route-hub::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 196, 87, 0.2), transparent 40%),
+        radial-gradient(circle at 80% 10%, rgba(255, 109, 109, 0.25), transparent 45%),
+        radial-gradient(circle at 70% 75%, rgba(99, 179, 255, 0.18), transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.route-hub::after {
+    content: '';
+    position: fixed;
+    inset: -20% 0 0;
+    background-image: linear-gradient(120deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 40%);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.route-hub .hub {
+    position: relative;
+    z-index: 1;
+    padding: 80px 6vw 96px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+body.route-hub .hub-hero {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 48px;
+}
+
+body.route-hub .hub-kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 222, 165, 0.8);
+}
+
+body.route-hub .hub-hero h1 {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: clamp(2.4rem, 4vw, 4rem);
+    margin: 0;
+    color: #ffd17a;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+body.route-hub .hub-hero p {
+    margin: 0;
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    max-width: 520px;
+    color: rgba(255, 246, 230, 0.85);
+}
+
+body.route-hub .hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+body.route-hub .hub-card {
+    background: rgba(17, 8, 14, 0.72);
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    display: grid;
+    gap: 18px;
+    padding: 22px;
+    backdrop-filter: blur(6px);
+    transform: translateY(0);
+    transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.route-hub .hub-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 209, 122, 0.5);
+    box-shadow: 0 30px 55px rgba(0, 0, 0, 0.45);
+}
+
+body.route-hub .hub-card-media {
+    background: linear-gradient(135deg, rgba(255, 209, 122, 0.35), rgba(255, 109, 109, 0.2));
+    border-radius: 18px;
+    padding: 18px;
+    min-height: 160px;
+    display: grid;
+    place-items: center;
+}
+
+body.route-hub .hub-card-media img {
+    width: min(220px, 100%);
+    height: auto;
+    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.45));
+}
+
+body.route-hub .hub-card-body h2 {
+    margin: 0 0 8px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff3db;
+}
+
+body.route-hub .hub-card-body p {
+    margin: 0 0 18px;
+    color: rgba(255, 246, 230, 0.8);
+}
+
+body.route-hub .hub-cta {
+    border: none;
+    border-radius: 999px;
+    padding: 12px 26px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: linear-gradient(120deg, #ffd17a, #ff7b6b);
+    color: #2d0b15;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.route-hub .hub-cta:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(255, 123, 107, 0.35);
+}
+
+body.route-hub .hub-cta:disabled {
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.6);
+    cursor: not-allowed;
+}
+
+body.route-hub .hub-card-placeholder {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 1.4rem;
+    color: rgba(255, 246, 230, 0.5);
+    text-align: center;
+}
+
+body.route-hub .hub-card-locked {
+    opacity: 0.7;
+}
+
+@media (max-width: 720px) {
+    body.route-hub .hub {
+        padding: 64px 7vw 80px;
+    }
+
+    body.route-hub .hub-hero {
+        margin-bottom: 32px;
+    }
+}

@@ -166,6 +166,10 @@ body.route-menu .carosello-btn {
     z-index: 9999;
 }
 
+body:not(.route-menu) #overlayBenvenuto {
+    display: none;
+}
+
 /* Box nero semitrasparente */
 #finestraBenvenuto {
     background: rgba(0,0,0,0.85); /* nero con trasparenza */
@@ -264,6 +268,5 @@ body.route-menu .carosello-btn {
 }
 
 #volumeControlGame { display: none; } /* nascosto sul menu */
-
 
 
