@@ -67,10 +67,10 @@
   {
     "title": "Le abitudini più comuni appena ci si sveglia",
     "answers": [
-      { "text": "Fare Colazione", "score": 30 },
-      { "text": "Bere Acqua", "score": 25 },
-      { "text": "Lavarsi", "score": 20 },
-      { "text": "Controllare lo Smartphone", "score": 15 },
+      { "text": "Controllare lo smartphone", "score": 30 },
+      { "text": "Fare Colazione", "score": 25 },
+      { "text": "Bere Acqua", "score": 20 },
+      { "text": "Lavarsi", "score": 15 },
       { "text": "Andare in Bagno", "score": 13 },
       { "text": "Stretching", "score": 10 },
       { "text": "Guardare notizie Radio/TV", "score": 7 },
@@ -96,10 +96,10 @@
       { "text": "TikTok", "score": 30 },
       { "text": "ChatGPT", "score": 25 },
       { "text": "YouTube", "score": 20 },
-      { "text": "Facebook", "score": 15 },
-      { "text": "Instagram", "score": 13 },
-      { "text": "WhatsApp", "score": 10 },
-      { "text": "Snapchat", "score": 7 },
+      { "text": "Instagram", "score": 15 },
+      { "text": "Snapchat", "score": 13 },
+      { "text": "Facebook", "score": 10 },
+      { "text": "Whatsapp", "score": 7 },
       { "text": "Telegram", "score": 5 }
     ]
   },
