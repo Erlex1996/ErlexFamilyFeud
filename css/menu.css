@@ -224,4 +224,46 @@ body.route-menu .carosello-btn {
     #cominciaBtn { padding: 8px 20px; font-size: 15px; }
 }
 
+#volumeControl {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    z-index: 1; /* sotto overlay */
+    font-size: 18px;
+    overflow: hidden;
+    width: 32px; /* solo icona di default */
+    background: transparent; /* niente sfondo quando chiuso */
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+#volumeControl:hover {
+    width: 160px; /* icona + slider */
+    background: rgba(0,0,0,0.5); /* sfondo nero solo quando hover */
+}
+
+#volumeIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#volumeSlider {
+    width: 120px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+/* Mostra slider solo al passaggio del mouse */
+#volumeControl:hover #volumeSlider {
+    opacity: 1;
+}
+
+#volumeControlGame { display: none; } /* nascosto sul menu */
+
+
 

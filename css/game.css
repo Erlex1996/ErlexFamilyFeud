@@ -477,6 +477,35 @@ body.route-game::before {
   color:#000;
 }
 
+#gameVolumeControl {
+    position: fixed;
+    top: 15px;
+    left: 80px;   /* valore sicuro */
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+}
+
+
+
+#gameVolumeSlider {
+    width: 0;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+#gameVolumeControl:hover #gameVolumeSlider {
+    width: 100px;
+    opacity: 1;
+}
+
+#gameVolumeIcon {
+    cursor: pointer;
+    font-size: 22px;
+    background: transparent;
+}
+
+
 /* === RESPONSIVE === */
 @media (max-width:1400px){
   .scale-container { transform: scale(1) translateY(0); }

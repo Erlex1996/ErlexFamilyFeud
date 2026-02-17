@@ -64,3 +64,4 @@ function appNavigate(path) {
 window.appNavigate = appNavigate;
 window.addEventListener("popstate", renderRoute);
 window.addEventListener("DOMContentLoaded", renderRoute);
+

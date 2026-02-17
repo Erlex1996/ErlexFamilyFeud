@@ -144,6 +144,34 @@ function avviaGioco(){
     }
 }
 
+const volumeIcon = document.getElementById('volumeIcon');
+const volumeSlider = document.getElementById('volumeSlider');
+
+if(volumeIcon && volumeSlider && !volumeIcon.dataset.initialized){
+    let lastVolume = volumeSlider.value;
+
+    volumeSlider.addEventListener('input', () => {
+        menuSound.volume = volumeSlider.value;
+        lastVolume = volumeSlider.value;
+        volumeIcon.textContent = menuSound.volume > 0 ? '🔊' : '🔇';
+    });
+
+    volumeIcon.addEventListener('click', () => {
+        if(menuSound.volume > 0){
+            lastVolume = menuSound.volume;
+            menuSound.volume = 0;
+            volumeSlider.value = 0;
+            volumeIcon.textContent = '🔇';
+        } else {
+            menuSound.volume = lastVolume;
+            volumeSlider.value = lastVolume;
+            volumeIcon.textContent = '🔊';
+        }
+    });
+
+    // Flag per evitare duplicati
+    volumeIcon.dataset.initialized = 'true';
+}
 
 
 mostraAvatar(1);

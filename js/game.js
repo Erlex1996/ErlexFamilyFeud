@@ -182,6 +182,68 @@ function changeRound(roundNumber){
   currentRound = roundNumber;
   const nextTeam = chooseTeamForNextRound();
 
+const icon = document.getElementById("gameVolumeIcon");
+const slider = document.getElementById("gameVolumeSlider");
+
+if(icon && slider){
+
+    const allSounds = [
+        document.getElementById("menuSound"),
+        document.getElementById("successSound"),
+        document.getElementById("wrongSound"),
+        document.getElementById("roundSound"),
+        document.getElementById("tensioneSound")
+    ].filter(Boolean);
+
+    let savedVolume = localStorage.getItem("globalVolume");
+    let savedMuted = localStorage.getItem("globalMuted") === "true";
+    let currentVolume = savedVolume !== null ? parseFloat(savedVolume) : 0.5;
+    slider.value = currentVolume;
+
+    function applyVolume(volume){
+        allSounds.forEach(sound => { sound.volume = volume; });
+    }
+
+    if(savedMuted){
+        applyVolume(0);
+        icon.textContent = "🔇";
+    } else {
+        applyVolume(currentVolume);
+    }
+
+    slider.addEventListener("input", () => {
+        currentVolume = parseFloat(slider.value);
+        applyVolume(currentVolume);
+        localStorage.setItem("globalVolume", currentVolume);
+
+        if(currentVolume === 0){
+            icon.textContent = "🔇";
+            savedMuted = true;
+        } else {
+            icon.textContent = "🔊";
+            savedMuted = false;
+        }
+
+        localStorage.setItem("globalMuted", savedMuted);
+    });
+
+    icon.addEventListener("click", () => {
+        if(!savedMuted){
+            applyVolume(0);
+            icon.textContent = "🔇";
+            savedMuted = true;
+        } else {
+            applyVolume(currentVolume || 0.5);
+            icon.textContent = "🔊";
+            savedMuted = false;
+        }
+        localStorage.setItem("globalMuted", savedMuted);
+    });
+}
+
+
+
+
   /* evidenzia bottone attivo */
   document.querySelectorAll('.round-btn').forEach(btn=>{
     btn.classList.remove('active');
