@@ -105,6 +105,46 @@ function avviaGioco(){
     window.location.href='game';
   }
 }
+document.getElementById('cominciaBtn').addEventListener('click', () => {
+    document.getElementById('overlayBenvenuto').style.display = 'none';
+});
+
+const menuSound = document.getElementById('menuSound');
+
+// Parte quando clicchi "Comincia!" sul messaggio di benvenuto
+document.getElementById('cominciaBtn').addEventListener('click', () => {
+    document.getElementById('overlayBenvenuto').style.display = 'none';
+    
+    // prova a far partire l'audio
+    menuSound.play().catch(err => {
+        console.log("Autoplay bloccato dal browser:", err);
+    });
+});
+
+// Si ferma quando clicchi "Avvia Gioco"
+function avviaGioco(){
+    if(!(avatarSelezionato[1] && avatarSelezionato[2])) return;
+
+    localStorage.setItem('nome1', document.getElementById('nome1').value);
+    localStorage.setItem('colore1', coloreScelto[1]);
+    localStorage.setItem('avatar1', avatarSelezionato[1]);
+
+    localStorage.setItem('nome2', document.getElementById('nome2').value);
+    localStorage.setItem('colore2', coloreScelto[2]);
+    localStorage.setItem('avatar2', avatarSelezionato[2]);
+
+    // Stop menu OST
+    menuSound.pause();
+    menuSound.currentTime = 0;
+
+    if (typeof window.appNavigate === 'function') {
+        window.appNavigate('/game');
+    } else {
+        window.location.href = 'game.html'; // file corretto
+    }
+}
+
+
 
 mostraAvatar(1);
 mostraAvatar(2);
