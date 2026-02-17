@@ -402,6 +402,20 @@ body.route-game::before {
   font-size:1.2em;
   flex-shrink:0;
 }
+.bonus-label {
+  background: transparent;      /* niente sfondo se vuoi solo numero rosso */
+  color: #ff2222;               /* rosso acceso */
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  min-width: 40px;
+  text-align: center;
+  font-size: 0.9em;
+  flex-shrink: 0;
+  font-family: 'Candara', sans-serif;
+  text-shadow: 0 0 6px #ff0000aa;  /* effetto glow */
+  animation: bonusPulse 1s infinite alternate;
+}
 
 .hidden { visibility: hidden; }
 

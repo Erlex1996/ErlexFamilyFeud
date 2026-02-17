@@ -3,6 +3,7 @@ let firstClickAppliedA=false;
 let firstClickAppliedB=false;
 let teamNameA='Squadra A';
 let teamNameB='Squadra B';
+let isDecisiveMoment = false;
 
 function refreshGameFromStorage(){
   const nome1 = localStorage.getItem('nome1') || 'Squadra A';
@@ -192,6 +193,9 @@ function changeRound(roundNumber){
   /* RESET SOLO GAMEPLAY */
   loadRoundData(roundNumber);
   resetRoundState();
+  isDecisiveMoment = false;
+
+document.querySelectorAll('.bonus-label').forEach(el=>el.remove());
   if(!(activeTeam === null && initialTeam === null)){
     setActiveTeam(nextTeam);
   }
@@ -224,12 +228,23 @@ function revealAnswer(index){
   const box=allBoxes[index];
   const text=box.querySelector(".answer-text");
   const score=box.querySelector(".answer-score");
+
   if(text.classList.contains("hidden")){
+
     text.classList.remove("hidden");
     score.classList.remove("hidden");
-    lastRevealedScore=parseInt(score.textContent);
+
+    let totalScore = parseInt(score.textContent);
+
+    if(isDecisiveMoment && box.dataset.bonus){
+      totalScore += parseInt(box.dataset.bonus);
+    }
+
+    lastRevealedScore = totalScore;
+
     firstClickAppliedA=false;
     firstClickAppliedB=false;
+
     const s=document.getElementById('successSound');
     s.currentTime=1;
     s.play();
@@ -273,8 +288,16 @@ function restartGame(){
   firstClickAppliedB=false;
   document.querySelectorAll('.answer-text').forEach(el=>el.classList.add('hidden'));
   document.querySelectorAll('.answer-score').forEach(el=>el.classList.add('hidden'));
-  document.querySelectorAll('.round-box').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.strike').forEach(el=>el.classList.remove('active'));
+  isDecisiveMoment = false;
+
+// Rimuove tutte le etichette bonus
+document.querySelectorAll('.bonus-label').forEach(el => el.remove());
+
+// Rimuove eventuali bonus salvati nei box
+document.querySelectorAll('.answer-box').forEach(box => {
+  delete box.dataset.bonus;
+});
 
     // Ferma musica tensione
   const tensione = document.getElementById('tensioneSound');
@@ -328,6 +351,10 @@ function checkStrikes() {
 }
 
 function showRoundDecisivo(nomeSquadra) {
+
+  isDecisiveMoment = true;
+showBonusOnHiddenAnswers();
+
   const msg = document.getElementById('roundDecisivo');
 
   msg.innerHTML = `
@@ -358,6 +385,35 @@ tensione.play();
       msg.style.display = 'none';
     }, 2500);
   }, 6000);
+}
+
+function showBonusOnHiddenAnswers(){
+
+  const boxes = document.querySelectorAll(".answer-box");
+
+  const fixedScores = [30,25,20,15,13,10,7,5];
+
+  boxes.forEach((box, index)=>{
+
+    const text = box.querySelector(".answer-text");
+    const scoreEl = box.querySelector(".answer-score");
+
+    if(text.classList.contains("hidden")){
+
+      const normalScore = fixedScores[index];
+
+      // bonus = punteggio invertito
+      const bonus = fixedScores[fixedScores.length - 1 - index];
+
+      box.dataset.bonus = bonus;
+
+      const bonusEl = document.createElement("div");
+      bonusEl.className = "bonus-label";
+      bonusEl.textContent = `+${bonus}`;
+
+      box.insertBefore(bonusEl, scoreEl);
+    }
+  });
 }
 
 document.querySelectorAll('.strike').forEach(btn=>{
