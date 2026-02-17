@@ -229,7 +229,7 @@ function revealAnswer(index){
   const tensione = document.getElementById('tensioneSound');
   tensione.pause();
   tensione.currentTime = 0;
-  
+
   const allBoxes=document.querySelectorAll(".answer-box");
   const box=allBoxes[index];
   const text=box.querySelector(".answer-text");
@@ -335,11 +335,6 @@ function setupRoundBoxHandlers(){
         const tensione = document.getElementById('tensioneSound');
         tensione.pause();
         tensione.currentTime = 0;
-
-        const maxRound = roundsData.length - 1;
-        if(maxRound > currentRound){
-          changeRound(currentRound + 1);
-        }
       }
     });
   });
