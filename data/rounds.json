@@ -33,8 +33,8 @@
       { "text": "Sushi", "score": 20 },
       { "text": "Pasta", "score": 15 },
       { "text": "Insalata", "score": 13 },
-      { "text": "Dolci", "score": 10 },
-      { "text": "Bevande", "score": 7 },
+      { "text": "Gelato", "score": 10 },
+      { "text": "Pokè Bowl", "score": 7 },
       { "text": "Kebab", "score": 5 }
     ]
   },
@@ -55,11 +55,11 @@
     "title": "Le serie di Netflix più viste di sempre (totale di tutte le stagioni)",
     "answers": [
       { "text": "Squid Game", "score": 30 },
-      { "text": "Wednesday", "score": 25 },
-      { "text": "Stranger Things", "score": 20 },
+      { "text": "Stranger Things", "score": 25 },
+      { "text": "Wednesday", "score": 20 },
       { "text": "La Casa di Carta", "score": 15 },
       { "text": "Bridgerton", "score": 13 },
-      { "text": "Adolescence", "score": 10 },
+      { "text": "The Night Agent", "score": 10 },
       { "text": "DAHMER: Monster", "score": 7 },
       { "text": "La Regina degli Scacchi", "score": 5 }
     ]
