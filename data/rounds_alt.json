@@ -1,0 +1,197 @@
+[
+  {
+    "title": "Sport piu seguiti al mondo (per fan)",
+    "answers": [
+      { "text": "Calcio", "score": 30 },
+      { "text": "Cricket", "score": 25 },
+      { "text": "Basket", "score": 20 },
+      { "text": "Hockey su prato", "score": 15 },
+      { "text": "Tennis", "score": 13 },
+      { "text": "Pallavolo", "score": 10 },
+      { "text": "Tennis tavolo", "score": 7 },
+      { "text": "Baseball", "score": 5 }
+    ]
+  },
+  {
+    "title": "Supereroi piu famosi al mondo",
+    "answers": [
+      { "text": "Spider-Man", "score": 30 },
+      { "text": "Batman", "score": 25 },
+      { "text": "Superman", "score": 20 },
+      { "text": "Iron Man", "score": 15 },
+      { "text": "Captain America", "score": 13 },
+      { "text": "Hulk", "score": 10 },
+      { "text": "Wonder Woman", "score": 7 },
+      { "text": "Thor", "score": 5 }
+    ]
+  },
+  {
+    "title": "Serie TV più costose di sempre (budget per episodio)",
+    "answers": [
+      { "text": "Anelli del potere", "score": 30 },
+      { "text": "Citadel", "score": 25 },
+      { "text": "Stranger Things (Stagione 4)", "score": 20 },
+      { "text": "House of the Dragon", "score": 15 },
+      { "text": "The Mandalorian", "score": 13 },
+      { "text": "The Pacific", "score": 10 },
+      { "text": "WandaVision", "score": 7 },
+      { "text": "Game of Thrones (stagioni finali)", "score": 5 }
+    ]
+  },
+  {
+    "title": "Cibi piu consumati al mondo",
+    "answers": [
+      { "text": "Riso", "score": 30 },
+      { "text": "Pane", "score": 25 },
+      { "text": "Noodles", "score": 20 },
+      { "text": "Patate", "score": 15 },
+      { "text": "Mais", "score": 13 },
+      { "text": "Pizza", "score": 10 },
+      { "text": "Pollo", "score": 7 },
+      { "text": "Pasta", "score": 5 }
+    ]
+  },
+  {
+    "title": "Citta piu visitate al mondo",
+    "answers": [
+      { "text": "Bangkok", "score": 30 },
+      { "text": "Parigi", "score": 25 },
+      { "text": "Londra", "score": 20 },
+      { "text": "Dubai", "score": 15 },
+      { "text": "Singapore", "score": 13 },
+      { "text": "Kuala Lumpur", "score": 10 },
+      { "text": "New York", "score": 7 },
+      { "text": "Istanbul", "score": 5 }
+    ]
+  },
+  {
+    "title": "App piu utilizzate ogni giorno",
+    "answers": [
+      { "text": "WhatsApp", "score": 30 },
+      { "text": "YouTube", "score": 25 },
+      { "text": "Instagram", "score": 20 },
+      { "text": "TikTok", "score": 15 },
+      { "text": "Facebook", "score": 13 },
+      { "text": "Google Maps", "score": 10 },
+      { "text": "Spotify", "score": 7 },
+      { "text": "Telegram", "score": 5 }
+    ]
+  },
+  {
+    "title": "Club inglesi con piu campionati vinti",
+    "answers": [
+      { "text": "Manchester United", "score": 30 },
+      { "text": "Liverpool", "score": 25 },
+      { "text": "Arsenal", "score": 20 },
+      { "text": "Manchester City", "score": 15 },
+      { "text": "Everton", "score": 13 },
+      { "text": "Aston Villa", "score": 10 },
+      { "text": "Chelsea", "score": 7 },
+      { "text": "Sunderland", "score": 5 }
+    ]
+  },
+  {
+    "title": "Club con piu finali di Champions League disputate",
+    "answers": [
+      { "text": "Real Madrid", "score": 30 },
+      { "text": "Milan", "score": 25 },
+      { "text": "Bayern Monaco", "score": 20 },
+      { "text": "Liverpool", "score": 15 },
+      { "text": "Juventus", "score": 13 },
+      { "text": "Barcellona", "score": 10 },
+      { "text": "Benfica", "score": 7 },
+      { "text": "Ajax", "score": 5 }
+    ]
+  },
+  {
+    "title": "Invenzioni con maggiore impatto storico",
+    "answers": [
+      { "text": "Stampa a caratteri mobili", "score": 30 },
+      { "text": "Macchina a vapore", "score": 25 },
+      { "text": "Elettricita", "score": 20 },
+      { "text": "Internet", "score": 15 },
+      { "text": "Vaccini", "score": 13 },
+      { "text": "Ruota", "score": 10 },
+      { "text": "Motore a combustione interna", "score": 7 },
+      { "text": "Penicillina", "score": 5 }
+    ]
+  },
+  {
+    "title": "Nazioni con piu medaglie olimpiche totali",
+    "answers": [
+      { "text": "Stati Uniti", "score": 30 },
+      { "text": "Unione Sovietica", "score": 25 },
+      { "text": "Germania", "score": 20 },
+      { "text": "Regno Unito", "score": 15 },
+      { "text": "Francia", "score": 13 },
+      { "text": "Italia", "score": 10 },
+      { "text": "Cina", "score": 7 },
+      { "text": "Australia", "score": 5 }
+    ]
+  },
+  {
+    "title": "Catene di fast food con piu sedi",
+    "answers": [
+      { "text": "Subway", "score": 30 },
+      { "text": "McDonald's", "score": 25 },
+      { "text": "Starbucks", "score": 20 },
+      { "text": "KFC", "score": 15 },
+      { "text": "Burger King", "score": 13 },
+      { "text": "Pizza Hut", "score": 10 },
+      { "text": "Dunkin'", "score": 7 },
+      { "text": "Domino's", "score": 5 }
+    ]
+  },
+  {
+    "title": "Macchine più vendute in Italia 2025",
+    "answers": [
+      { "text": "Fiat Panda", "score": 30 },
+      { "text": "Dacia Sandero", "score": 25 },
+      { "text": "Jeep Avenger", "score": 20 },
+      { "text": "Citroen C3", "score": 15 },
+      { "text": "Toyota Yaris Cross", "score": 13 },
+      { "text": "Toyota Yaris", "score": 10 },
+      { "text": "Dacia Duster", "score": 7 },
+      { "text": "Peugeot 208", "score": 5 }
+    ]
+  },
+  {
+    "title": "Figure più apprezzate nella storia",
+    "answers": [
+      { "text": "Einstein", "score": 30 },
+      { "text": "Madre Teresa di Calcutta", "score": 25 },
+      { "text": "Gandhi", "score": 20 },
+      { "text": "Martin Luther King", "score": 15 },
+      { "text": "Newton", "score": 13 },
+      { "text": "Gesù", "score": 10 },
+      { "text": "Mandela", "score": 7 },
+      { "text": "Edison", "score": 5 }
+    ]
+  },
+  {
+    "title": "Videogiochi con più copie vendute al day one",
+    "answers": [
+      { "text": "Grand Theft Auto V", "score": 30 },
+      { "text": "Call of Duty: Modern Warfare 3", "score": 25 },
+      { "text": "Call of Duty: Black Ops", "score": 20 },
+      { "text": "Red Dead Redemption 2", "score": 15 },
+      { "text": "Cyberpunk 2077", "score": 13 },
+      { "text": "FIFA 23", "score": 10 },
+      { "text": "Halo 3", "score": 7 },
+      { "text": "The Last of Us Part II", "score": 5 }
+    ]
+  },
+  {
+    "title": "Top marcatori della Roma nati dall'80 in poi",
+    "answers": [
+      { "text": "Dzeko", "score": 30 },
+      { "text": "El Shaarawy", "score": 25 },
+      { "text": "Vucinic", "score": 20 },
+      { "text": "De Rossi", "score": 15 },
+      { "text": "Mancini", "score": 13 },
+      { "text": "Pellegrini", "score": 10 },
+      { "text": "Cassano", "score": 7 },
+      { "text": "Dybala", "score": 5 }
+    ]
+  }
+]

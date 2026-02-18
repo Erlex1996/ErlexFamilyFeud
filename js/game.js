@@ -38,6 +38,61 @@ let activeTeam = null;
 let initialTeam = null;
 let wheelRotation = 0;
 let isWheelSpinning = false;
+const ROUND_TIME_SECONDS = 60;
+let timerRemainingSeconds = ROUND_TIME_SECONDS;
+let timerInterval = null;
+let roundTimerArmed = false;
+
+function formatTimer(seconds){
+  const clamped = Math.max(0, seconds);
+  const mins = Math.floor(clamped / 60);
+  const secs = clamped % 60;
+  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
+
+function updateTimerDisplay(){
+  const displays = document.querySelectorAll('.timer-display');
+  if(!displays.length) return;
+  displays.forEach(display => {
+    display.textContent = formatTimer(timerRemainingSeconds);
+    display.classList.toggle('timer-low', timerRemainingSeconds > 0 && timerRemainingSeconds <= 10);
+    display.classList.toggle('timer-done', timerRemainingSeconds === 0);
+  });
+}
+
+function stopRoundTimer(){
+  if(timerInterval){
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+}
+
+function startRoundTimer(){
+  if(timerInterval) return;
+  if(timerRemainingSeconds <= 0){
+    timerRemainingSeconds = ROUND_TIME_SECONDS;
+    updateTimerDisplay();
+  }
+  timerInterval = setInterval(() => {
+    timerRemainingSeconds -= 1;
+    if(timerRemainingSeconds <= 0){
+      timerRemainingSeconds = 0;
+      updateTimerDisplay();
+      stopRoundTimer();
+      return;
+    }
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function resetRoundTimer(shouldStart){
+  stopRoundTimer();
+  timerRemainingSeconds = ROUND_TIME_SECONDS;
+  updateTimerDisplay();
+  if(shouldStart){
+    startRoundTimer();
+  }
+}
 
 function setCategoryPlaceholder(titleText){
   const titleEl = document.getElementById('gameTitle');
@@ -58,12 +113,17 @@ function setCategoryPlaceholder(titleText){
 }
 
 function setActiveTeam(team){
+  const previousTeam = activeTeam;
   activeTeam = team;
   const teamA = document.getElementById('teamA');
   const teamB = document.getElementById('teamB');
   if(teamA && teamB){
     teamA.classList.toggle('turno-attivo', team === 'A');
     teamB.classList.toggle('turno-attivo', team === 'B');
+  }
+
+  if(previousTeam && team && previousTeam !== team && roundTimerArmed){
+    resetRoundTimer(true);
   }
 }
 
@@ -177,6 +237,22 @@ if(titleEl){
   titleEl.addEventListener('click', revealCategoryTitle);
 }
 
+document.querySelectorAll('.timer-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const action = button.dataset.timerAction;
+    roundTimerArmed = true;
+    if(action === 'restart'){
+      resetRoundTimer(true);
+    }else if(action === 'stop'){
+      stopRoundTimer();
+    }else{
+      startRoundTimer();
+    }
+  });
+});
+
+updateTimerDisplay();
+
 function changeRound(roundNumber){
 
   currentRound = roundNumber;
@@ -185,7 +261,7 @@ function changeRound(roundNumber){
   /* evidenzia bottone attivo */
   document.querySelectorAll('.round-btn').forEach(btn=>{
     btn.classList.remove('active');
-    if(parseInt(btn.textContent) === roundNumber){
+    if(parseInt(btn.dataset.round, 10) === roundNumber){
       btn.classList.add('active');
     }
   });
@@ -193,6 +269,8 @@ function changeRound(roundNumber){
   /* RESET SOLO GAMEPLAY */
   loadRoundData(roundNumber);
   resetRoundState();
+  roundTimerArmed = false;
+  resetRoundTimer(false);
   isDecisiveMoment = false;
 
 document.querySelectorAll('.bonus-label').forEach(el=>el.remove());
@@ -296,6 +374,8 @@ function restartGame(){
   document.querySelectorAll('.answer-score').forEach(el=>el.classList.add('hidden'));
   document.querySelectorAll('.strike').forEach(el=>el.classList.remove('active'));
   isDecisiveMoment = false;
+  roundTimerArmed = false;
+  resetRoundTimer(false);
 
 // Rimuove tutte le etichette bonus
 document.querySelectorAll('.bonus-label').forEach(el => el.remove());
@@ -459,6 +539,21 @@ function buildRoundBoxes(totalRounds){
   });
 }
 
+function buildRoundNav(totalRounds){
+  const nav = document.querySelector('.round-nav');
+  if(!nav) return;
+  nav.innerHTML = '';
+
+  for(let i = 1; i <= totalRounds; i += 1){
+    const btn = document.createElement('button');
+    btn.className = 'round-btn';
+    btn.dataset.round = i - 1;
+    btn.textContent = i;
+    btn.addEventListener('click', () => changeRound(i - 1));
+    nav.appendChild(btn);
+  }
+}
+
 function loadRoundData(roundNumber){
 
   const round = roundsData[roundNumber];
@@ -487,7 +582,8 @@ function loadRoundData(roundNumber){
 
 async function initRoundsData(){
   try {
-    const response = await fetch('data/rounds.json', { cache: 'no-store' });
+    const source = window.roundsSource || 'data/rounds.json';
+    const response = await fetch(source, { cache: 'no-store' });
     if(!response.ok) throw new Error('Rounds fetch failed');
     roundsData = await response.json();
   } catch (error) {
@@ -495,10 +591,18 @@ async function initRoundsData(){
     roundsData = [];
   }
 
-  const totalRounds = Math.max(roundsData.length - 1, 1);
+  const totalRounds = Math.max(roundsData.length, 1);
   buildRoundBoxes(totalRounds);
+  buildRoundNav(totalRounds);
   setupRoundBoxHandlers();
   changeRound(0);
 }
 
 initRoundsData();
+
+function setRoundsSource(source){
+  window.roundsSource = source;
+  initRoundsData();
+}
+
+window.setRoundsSource = setRoundsSource;

@@ -156,6 +156,79 @@ body.route-hub .hub-card-locked {
     opacity: 0.7;
 }
 
+.hub-gate {
+    display: none;
+}
+
+body.route-hub .hub-gate {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(4, 2, 6, 0.78);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 10;
+}
+
+body.route-hub .hub-gate.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.route-hub .hub-gate-card {
+    background: rgba(20, 10, 18, 0.95);
+    border-radius: 20px;
+    padding: 28px;
+    width: min(90vw, 380px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+
+body.route-hub .hub-gate-card h2 {
+    margin: 0 0 8px;
+    font-size: 1.4rem;
+    color: #ffd17a;
+}
+
+body.route-hub .hub-gate-card p {
+    margin: 0 0 18px;
+    color: rgba(255, 246, 230, 0.75);
+}
+
+body.route-hub .hub-gate-card input {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 12px;
+    background: rgba(6, 3, 8, 0.7);
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+body.route-hub .hub-gate-error {
+    min-height: 18px;
+    color: #ff7b6b;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+body.route-hub .hub-gate-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+body.route-hub .hub-cta-ghost {
+    background: transparent;
+    color: #ffd17a;
+    border: 1px solid rgba(255, 209, 122, 0.5);
+}
+
 @media (max-width: 720px) {
     body.route-hub .hub {
         padding: 64px 7vw 80px;

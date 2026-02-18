@@ -52,7 +52,7 @@
         <div class="hub-card-body">
           <h2>Family Feud</h2>
           <p>Gioco a squadre con domande rapide, punti e round da spettacolo.</p>
-          <button class="hub-cta" onclick="if (window.appNavigate) { window.appNavigate('/menu'); } else { window.location.href = 'menu'; }">Entra</button>
+          <button class="hub-cta" id="hubEnterFamily">Entra</button>
         </div>
       </article>
 
@@ -69,6 +69,19 @@
     </div>
   </div>
 </section>
+
+<div class="hub-gate" id="hubGate" aria-hidden="true">
+  <div class="hub-gate-card" role="dialog" aria-modal="true" aria-labelledby="hubGateTitle">
+    <h2 id="hubGateTitle">Inserisci la password</h2>
+    <p>Serve per scegliere il set di domande.</p>
+    <input id="hubPassword" type="password" placeholder="Password" autocomplete="off">
+    <div class="hub-gate-error" id="hubGateError"></div>
+    <div class="hub-gate-actions">
+      <button class="hub-cta" id="hubGateSubmit">Entra</button>
+      <button class="hub-cta hub-cta-ghost" id="hubGateCancel">Annulla</button>
+    </div>
+  </div>
+</div>
 
 <section class="route" data-route="/menu">
   <div class="menu">
@@ -166,6 +179,14 @@
   <!-- TEAM A -->
   <div class="team-score" id="teamA">
   <img src="" id="avatarA" class="team-avatar" alt="team-avatar">
+  <div class="round-timer" aria-live="polite" data-team="A">
+    <div class="timer-display">01:00</div>
+    <div class="timer-controls">
+      <button class="timer-btn timer-btn-start" data-timer-action="start" aria-label="Avvia"><i class="bi bi-play-fill" aria-hidden="true"></i></button>
+      <button class="timer-btn timer-btn-restart" data-timer-action="restart" aria-label="Restart"><i class="bi bi-arrow-clockwise" aria-hidden="true"></i></button>
+      <button class="timer-btn timer-btn-stop" data-timer-action="stop" aria-label="Stop"><i class="bi bi-stop-fill" aria-hidden="true"></i></button>
+    </div>
+  </div>
   <h2 id="nomeA">Squadra A</h2>
   <div class="score-value" id="scoreA">0</div>
   <div class="score-buttons">
@@ -200,6 +221,14 @@
   <!-- TEAM B -->
   <div class="team-score" id="teamB">
   <img src="" id="avatarB" class="team-avatar" alt="team-avatar">
+  <div class="round-timer" aria-live="polite" data-team="B">
+    <div class="timer-display">01:00</div>
+    <div class="timer-controls">
+      <button class="timer-btn timer-btn-start" data-timer-action="start" aria-label="Avvia"><i class="bi bi-play-fill" aria-hidden="true"></i></button>
+      <button class="timer-btn timer-btn-restart" data-timer-action="restart" aria-label="Restart"><i class="bi bi-arrow-clockwise" aria-hidden="true"></i></button>
+      <button class="timer-btn timer-btn-stop" data-timer-action="stop" aria-label="Stop"><i class="bi bi-stop-fill" aria-hidden="true"></i></button>
+    </div>
+  </div>
   <h2 id="nomeB">Squadra B</h2>
   <div class="score-value" id="scoreB">0</div>
   <div class="score-buttons">
@@ -219,27 +248,11 @@
   </div>
 
   <!-- NAVIGAZIONE ROUND -->
-  <div class="round-nav">
-  <button class="round-btn" onclick="changeRound(0)">0</button>
-  <button class="round-btn" onclick="changeRound(1)">1</button>
-  <button class="round-btn" onclick="changeRound(2)">2</button>
-  <button class="round-btn" onclick="changeRound(3)">3</button>
-  <button class="round-btn" onclick="changeRound(4)">4</button>
-  <button class="round-btn" onclick="changeRound(5)">5</button>
-  <button class="round-btn" onclick="changeRound(6)">6</button>
-  <button class="round-btn" onclick="changeRound(7)">7</button>
-  <button class="round-btn" onclick="changeRound(8)">8</button>
-  <button class="round-btn" onclick="changeRound(9)">9</button>
-  <button class="round-btn" onclick="changeRound(10)">10</button>
-  <button class="round-btn" onclick="changeRound(11)">11</button>
-  <button class="round-btn" onclick="changeRound(12)">12</button>
-  <button class="round-btn" onclick="changeRound(13)">13</button>
-  <button class="round-btn" onclick="changeRound(14)">14</button>
-  <button class="round-btn" onclick="changeRound(15)">15</button>
-  </div>
+  <div class="round-nav"></div>
 </section>
 
 <script src="js/router.js"></script>
+<script src="js/hub.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/answer-heights.js"></script>
 <script src="js/game.js"></script>
