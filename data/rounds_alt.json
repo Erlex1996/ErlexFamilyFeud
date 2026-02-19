@@ -1,5 +1,18 @@
 [
   {
+    "title": "Supereroi piu famosi al mondo",
+    "answers": [
+      { "text": "Spider-Man", "score": 30 },
+      { "text": "Batman", "score": 25 },
+      { "text": "Superman", "score": 20 },
+      { "text": "Iron Man", "score": 15 },
+      { "text": "Captain America", "score": 13 },
+      { "text": "Hulk", "score": 10 },
+      { "text": "Wonder Woman", "score": 7 },
+      { "text": "Thor", "score": 5 }
+    ]
+  },
+  {
     "title": "Sport piu seguiti al mondo (per fan)",
     "answers": [
       { "text": "Calcio", "score": 30 },
@@ -13,16 +26,29 @@
     ]
   },
   {
-    "title": "Supereroi piu famosi al mondo",
+    "title": "Citta piu visitate al mondo",
     "answers": [
-      { "text": "Spider-Man", "score": 30 },
-      { "text": "Batman", "score": 25 },
-      { "text": "Superman", "score": 20 },
-      { "text": "Iron Man", "score": 15 },
-      { "text": "Captain America", "score": 13 },
-      { "text": "Hulk", "score": 10 },
-      { "text": "Wonder Woman", "score": 7 },
-      { "text": "Thor", "score": 5 }
+      { "text": "Bangkok", "score": 30 },
+      { "text": "Parigi", "score": 25 },
+      { "text": "Londra", "score": 20 },
+      { "text": "Dubai", "score": 15 },
+      { "text": "Singapore", "score": 13 },
+      { "text": "Kuala Lumpur", "score": 10 },
+      { "text": "New York", "score": 7 },
+      { "text": "Istanbul", "score": 5 }
+    ]
+  },
+  {
+    "title": "Club con piu finali di Champions League disputate",
+    "answers": [
+      { "text": "Real Madrid", "score": 30 },
+      { "text": "Milan", "score": 25 },
+      { "text": "Bayern Monaco", "score": 20 },
+      { "text": "Liverpool", "score": 15 },
+      { "text": "Juventus", "score": 13 },
+      { "text": "Barcellona", "score": 10 },
+      { "text": "Benfica", "score": 7 },
+      { "text": "Ajax", "score": 5 }
     ]
   },
   {
@@ -52,29 +78,16 @@
     ]
   },
   {
-    "title": "Citta piu visitate al mondo",
+    "title": "Ordine turni GO2 Sabato(~dicembre 21)",
     "answers": [
-      { "text": "Bangkok", "score": 30 },
-      { "text": "Parigi", "score": 25 },
-      { "text": "Londra", "score": 20 },
-      { "text": "Dubai", "score": 15 },
-      { "text": "Singapore", "score": 13 },
-      { "text": "Kuala Lumpur", "score": 10 },
-      { "text": "New York", "score": 7 },
-      { "text": "Istanbul", "score": 5 }
-    ]
-  },
-  {
-    "title": "App piu utilizzate ogni giorno",
-    "answers": [
-      { "text": "WhatsApp", "score": 30 },
-      { "text": "YouTube", "score": 25 },
-      { "text": "Instagram", "score": 20 },
-      { "text": "TikTok", "score": 15 },
-      { "text": "Facebook", "score": 13 },
-      { "text": "Google Maps", "score": 10 },
-      { "text": "Spotify", "score": 7 },
-      { "text": "Telegram", "score": 5 }
+      { "text": "Sberi", "score": 30 },
+      { "text": "Il mostro", "score": 25 },
+      { "text": "Erlex", "score": 20 },
+      { "text": "Mimmo", "score": 15 },
+      { "text": "Favio la merda", "score": 13 },
+      { "text": "Pablo", "score": 10 },
+      { "text": "Alessio2", "score": 7 },
+      { "text": "Poeta", "score": 5 }
     ]
   },
   {
@@ -88,19 +101,6 @@
       { "text": "Aston Villa", "score": 10 },
       { "text": "Chelsea", "score": 7 },
       { "text": "Sunderland", "score": 5 }
-    ]
-  },
-  {
-    "title": "Club con piu finali di Champions League disputate",
-    "answers": [
-      { "text": "Real Madrid", "score": 30 },
-      { "text": "Milan", "score": 25 },
-      { "text": "Bayern Monaco", "score": 20 },
-      { "text": "Liverpool", "score": 15 },
-      { "text": "Juventus", "score": 13 },
-      { "text": "Barcellona", "score": 10 },
-      { "text": "Benfica", "score": 7 },
-      { "text": "Ajax", "score": 5 }
     ]
   },
   {
