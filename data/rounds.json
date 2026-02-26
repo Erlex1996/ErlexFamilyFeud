@@ -50,5 +50,83 @@
       { "text": "Tromba", "score": 7 },
       { "text": "Ukulele", "score": 5 }
     ]
-  }
+  },
+  {
+    "title": "Turni al GO Domenica 4 Ottobre 2020",
+    "answers": [
+      { "text": "Ale", "score": 30 },
+      { "text": "Favio", "score": 25 },
+      { "text": "Davidino", "score": 20 },
+      { "text": "Giuseppe", "score": 15 },
+      { "text": "Davide", "score": 13 },
+      { "text": "Mimmo", "score": 10 },
+      { "text": "Sberi", "score": 7 },
+      { "text": "Simone", "score": 5 }
+    ]
+  },
+  {
+    "title": "Le app più scaricate al mondo nel 2025",
+    "answers": [
+      { "text": "TikTok", "score": 30 },
+      { "text": "Instagram", "score": 25 },
+      { "text": "Whatsapp", "score": 20 },
+      { "text": "Facebook", "score": 15 },
+      { "text": "Temu", "score": 13 },
+      { "text": "Telegram", "score": 10 },
+      { "text": "CapCut", "score": 7 },
+      { "text": "Spotify", "score": 5 }
+    ]
+  },
+  {
+    "title": "Compagnie aeree con più passeggeri al mondo",
+    "answers": [
+      { "text": "American Airlines", "score": 30 },
+      { "text": "Delta Air Lines", "score": 25 },
+      { "text": "Ryanair", "score": 20 },
+      { "text": "United Airlines", "score": 15 },
+      { "text": "Southwest Airlines", "score": 13 },
+      { "text": "Lufthansa", "score": 10 },
+      { "text": "Emirates", "score": 7 },
+      { "text": "China Southern Airlines", "score": 5 }
+    ]
+  },
+  {
+    "title": "Serie TV più viste in streaming nel 2024–2025",
+    "answers": [
+      { "text": "Wednesday", "score": 30 },
+      { "text": "Stranger Things", "score": 25 },
+      { "text": "Squid Game", "score": 20 },
+      { "text": "The Boys", "score": 15 },
+      { "text": "House of the Dragon", "score": 13 },
+      { "text": "Bridgerton", "score": 10 },
+      { "text": "The Last of Us", "score": 7 },
+      { "text": "One Piece", "score": 5 }
+    ]
+  },
+  {
+    "title": "Brand più di valore al mondo (Brand Finance 2025)",
+    "answers": [
+      { "text": "Apple", "score": 30 },
+      { "text": "Amazon", "score": 25 },
+      { "text": "Google", "score": 20 },
+      { "text": "Microsoft", "score": 15 },
+      { "text": "Walmart", "score": 13 },
+      { "text": "Samsung", "score": 10 },
+      { "text": "TikTok", "score": 7 },
+      { "text": "Facebook (Meta)", "score": 5 }
+    ]
+  },
+  {
+    "title": "Case automobilistiche che vendono più auto al mondo (2025)",
+    "answers": [
+      { "text": "Toyota", "score": 30 },
+      { "text": "Volkswagen", "score": 25 },
+      { "text": "Hyundai", "score": 20 },
+      { "text": "Ford", "score": 15 },
+      { "text": "Honda", "score": 13 },
+      { "text": "Chevrolet", "score": 10 },
+      { "text": "Nissan", "score": 7 },
+      { "text": "BYD", "score": 5 }
+    ]
+  }              
 ]
