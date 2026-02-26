@@ -1,5 +1,18 @@
 [
   {
+    "title": "Bevande analcoliche più vendute al mondo",
+    "answers": [
+      { "text": "Coca-Cola", "score": 30 },
+      { "text": "Pepsi", "score": 25 },
+      { "text": "Sprite", "score": 20 },
+      { "text": "Fanta", "score": 15 },
+      { "text": "Red Bull", "score": 13 },
+      { "text": "Dr Pepper", "score": 10 },
+      { "text": "Mountain Dew", "score": 7 },
+      { "text": "7UP", "score": 5 }
+    ]
+  },
+  {
     "title": "Tour musicali più redditizi di sempre",
     "answers": [
       { "text": "Taylor Swift", "score": 30 },
@@ -13,16 +26,42 @@
     ]
   },
   {
-    "title": "Personaggi storici più rappresentati nei media",
+    "title": "Destinazioni vacanze più prenotate nel 2025",
     "answers": [
-      { "text": "Gesù Cristo", "score": 30 },
-      { "text": "Adolf Hitler", "score": 25 },
-      { "text": "Abraham Lincoln", "score": 20 },
-      { "text": "Napoleone Bonaparte", "score": 15 },
-      { "text": "Cleopatra", "score": 13 },
-      { "text": "Gandhi", "score": 10 },
-      { "text": "Albert Einstein", "score": 7 },
-      { "text": "William Shakespeare", "score": 5 }
+      { "text": "Bali, Indonesia", "score": 30 },
+      { "text": "Parigi, Francia", "score": 25 },
+      { "text": "Maldive", "score": 20 },
+      { "text": "Roma, Italia", "score": 15 },
+      { "text": "Dubai, UAE", "score": 13 },
+      { "text": "Cancún, Messico", "score": 10 },
+      { "text": "Tokyo, Giappone", "score": 7 },
+      { "text": "Santorini, Grecia", "score": 5 }
+    ]
+  },
+  {
+    "title": "Giochi più platinati al mondo",
+    "answers": [
+      { "text": "Assassin’s Creed 2", "score": 30 },
+      { "text": "Modern Warfare 2", "score": 25 },
+      { "text": "Uncharted 2", "score": 20 },
+      { "text": "God of War 3", "score": 15 },
+      { "text": "Resident Evil 5", "score": 13 },
+      { "text": "inFamous", "score": 10 },
+      { "text": "Uncharted", "score": 7 },
+      { "text": "Borderlands", "score": 5 }
+    ]
+  },
+  {
+    "title": "Case automobilistiche che vendono più auto al mondo (2025)",
+    "answers": [
+      { "text": "Toyota", "score": 30 },
+      { "text": "Volkswagen", "score": 25 },
+      { "text": "Hyundai", "score": 20 },
+      { "text": "Ford", "score": 15 },
+      { "text": "Honda", "score": 13 },
+      { "text": "Chevrolet", "score": 10 },
+      { "text": "Nissan", "score": 7 },
+      { "text": "BYD", "score": 5 }
     ]
   },
   {
@@ -39,32 +78,6 @@
     ]
   },
   {
-    "title": "Strumenti musicali più praticati e diffusi",
-    "answers": [
-      { "text": "Chitarra", "score": 30 },
-      { "text": "Pianoforte", "score": 25 },
-      { "text": "Violino", "score": 20 },
-      { "text": "Batteria", "score": 15 },
-      { "text": "Flauto", "score": 13 },
-      { "text": "Sax", "score": 10 },
-      { "text": "Tromba", "score": 7 },
-      { "text": "Ukulele", "score": 5 }
-    ]
-  },
-  {
-    "title": "Turni al GO Domenica 4 Ottobre 2020",
-    "answers": [
-      { "text": "Ale", "score": 30 },
-      { "text": "Favio", "score": 25 },
-      { "text": "Davidino", "score": 20 },
-      { "text": "Giuseppe", "score": 15 },
-      { "text": "Davide", "score": 13 },
-      { "text": "Mimmo", "score": 10 },
-      { "text": "Sberi", "score": 7 },
-      { "text": "Simone", "score": 5 }
-    ]
-  },
-  {
     "title": "Le app più scaricate al mondo nel 2025",
     "answers": [
       { "text": "TikTok", "score": 30 },
@@ -78,16 +91,42 @@
     ]
   },
   {
-    "title": "Compagnie aeree con più passeggeri al mondo",
+    "title": "Console portatili più vendute di sempre",
     "answers": [
-      { "text": "American Airlines", "score": 30 },
-      { "text": "Delta Air Lines", "score": 25 },
-      { "text": "Ryanair", "score": 20 },
-      { "text": "United Airlines", "score": 15 },
-      { "text": "Southwest Airlines", "score": 13 },
-      { "text": "Lufthansa", "score": 10 },
-      { "text": "Emirates", "score": 7 },
-      { "text": "China Southern Airlines", "score": 5 }
+      { "text": "Nintendo DS", "score": 30 },
+      { "text": "Nintendo Switch", "score": 25 },
+      { "text": "Game Boy/Color", "score": 20 },
+      { "text": "Game Boy Advance", "score": 15 },
+      { "text": "PSP", "score": 13 },
+      { "text": "Nintendo 3DS", "score": 10 },
+      { "text": "PS Vita", "score": 7 },
+      { "text": "Steam Deck", "score": 5 }
+    ]
+  },
+  {
+    "title": "Personaggi storici più rappresentati nei media",
+    "answers": [
+      { "text": "Gesù Cristo", "score": 30 },
+      { "text": "Adolf Hitler", "score": 25 },
+      { "text": "Abraham Lincoln", "score": 20 },
+      { "text": "Napoleone Bonaparte", "score": 15 },
+      { "text": "Cleopatra", "score": 13 },
+      { "text": "Gandhi", "score": 10 },
+      { "text": "Albert Einstein", "score": 7 },
+      { "text": "William Shakespeare", "score": 5 }
+    ]
+  },
+  {
+    "title": "Film animati più visti/incasso di sempre",
+    "answers": [
+      { "text": "The Lion King", "score": 30 },
+      { "text": "Frozen", "score": 25 },
+      { "text": "Minions", "score": 20 },
+      { "text": "Toy Story 4", "score": 15 },
+      { "text": "Gli Incredibili 2", "score": 13 },
+      { "text": "Finding Nemo", "score": 10 },
+      { "text": "Shrek 2", "score": 7 },
+      { "text": "Cattivissimo Me", "score": 5 }
     ]
   },
   {
@@ -117,16 +156,42 @@
     ]
   },
   {
-    "title": "Case automobilistiche che vendono più auto al mondo (2025)",
+    "title": "Compagnie aeree con più passeggeri al mondo",
     "answers": [
-      { "text": "Toyota", "score": 30 },
-      { "text": "Volkswagen", "score": 25 },
-      { "text": "Hyundai", "score": 20 },
-      { "text": "Ford", "score": 15 },
-      { "text": "Honda", "score": 13 },
-      { "text": "Chevrolet", "score": 10 },
-      { "text": "Nissan", "score": 7 },
-      { "text": "BYD", "score": 5 }
+      { "text": "American Airlines", "score": 30 },
+      { "text": "Delta Air Lines", "score": 25 },
+      { "text": "Ryanair", "score": 20 },
+      { "text": "United Airlines", "score": 15 },
+      { "text": "Southwest Airlines", "score": 13 },
+      { "text": "Lufthansa", "score": 10 },
+      { "text": "Emirates", "score": 7 },
+      { "text": "China Southern Airlines", "score": 5 }
     ]
-  }              
+  },
+  {
+    "title": "Strumenti musicali più praticati e diffusi",
+    "answers": [
+      { "text": "Chitarra", "score": 30 },
+      { "text": "Pianoforte", "score": 25 },
+      { "text": "Violino", "score": 20 },
+      { "text": "Batteria", "score": 15 },
+      { "text": "Flauto", "score": 13 },
+      { "text": "Sax", "score": 10 },
+      { "text": "Tromba", "score": 7 },
+      { "text": "Ukulele", "score": 5 }
+    ]
+  },
+  {
+    "title": "Turni al GO Domenica 4 Ottobre 2020",
+    "answers": [
+      { "text": "Ale", "score": 30 },
+      { "text": "Favio", "score": 25 },
+      { "text": "Davidino", "score": 20 },
+      { "text": "Giuseppe", "score": 15 },
+      { "text": "Davide", "score": 13 },
+      { "text": "Mimmo", "score": 10 },
+      { "text": "Sberi", "score": 7 },
+      { "text": "Simone", "score": 5 }
+    ]
+  }
 ]
